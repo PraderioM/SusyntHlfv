@@ -48,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -83,64 +84,102 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00002"></a>00002 <span class="preprocessor">#ifndef HLVF_SELECTOR_H</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define HLVF_SELECTOR_H</span>
 <a name="l00004"></a>00004 <span class="preprocessor"></span>
-<a name="l00005"></a>00005 
-<a name="l00006"></a>00006 
-<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;SusyNtuple/SusyNtAna.h&quot;</span>
-<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;SusyNtuple/SusyDefs.h&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;SusyntHlfv/ProgressPrinter.h&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;SusyntHlfv/CutFlowCounter.h&quot;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;SusyntHlfv/Systematic.h&quot;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;SusyntHlfv/TupleMaker.h&quot;</span>
 <a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;SusyntHlfv/ProgressPrinter.h&quot;</span>
-<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;SusyntHlfv/CutFlowCounter.h&quot;</span>
-<a name="l00012"></a>00012 
+<a name="l00010"></a>00010 <span class="preprocessor">#include &quot;SusyNtuple/SusyNtAna.h&quot;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &quot;SusyNtuple/SusyDefs.h&quot;</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;SusyNtuple/EventlistHandler.h&quot;</span>
 <a name="l00013"></a>00013 
-<a name="l00014"></a>00014 <span class="comment">// fw decl</span>
-<a name="l00015"></a>00015 <span class="keyword">class </span>DilTrigLogic;
-<a name="l00016"></a>00016 <span class="keyword">class </span>MCWeighter;
-<a name="l00017"></a>00017 
-<a name="l00018"></a>00018 <span class="keyword">namespace </span>hlfv{
-<a name="l00019"></a>00019 
-<a name="l00020"></a>00020 <span class="keyword">class </span>WeightComponents;
-<a name="l00021"></a>00021 <span class="keyword">class </span>EventFlags;
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="comment">// fw decl</span>
+<a name="l00016"></a>00016 <span class="keyword">class </span>DilTrigLogic;
+<a name="l00017"></a>00017 <span class="keyword">class </span>MCWeighter;
+<a name="l00018"></a>00018 <span class="keyword">class </span>JVFUncertaintyTool;
+<a name="l00019"></a>00019 <span class="keyword">namespace </span>Susy{ <span class="keyword">class </span>Event; }
+<a name="l00020"></a>00020 
+<a name="l00021"></a>00021 <span class="keyword">namespace </span>hlfv{
 <a name="l00022"></a>00022 
-<a name="l00023"></a><a class="code" href="classhlfv_1_1Selector.html">00023</a> <span class="keyword">class </span><a class="code" href="classhlfv_1_1Selector.html">Selector</a> : <span class="keyword">public</span> SusyNtAna
-<a name="l00024"></a>00024 {
-<a name="l00025"></a>00025 <span class="keyword">public</span>:
-<a name="l00026"></a>00026     <a class="code" href="classhlfv_1_1Selector.html">Selector</a>();
-<a name="l00027"></a>00027     <span class="keyword">virtual</span> ~<a class="code" href="classhlfv_1_1Selector.html">Selector</a>(){};
-<a name="l00028"></a>00028     <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classhlfv_1_1Selector.html#aed5ad3b08e60d203859c4f575cc87409" title="called before looping on entries">Begin</a>(TTree *tree);      
-<a name="l00029"></a>00029     <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classhlfv_1_1Selector.html#ac1ac1f528dd44ed67212996a82220984" title="called when the TChain is attached">Init</a>(TTree *tree);       
-<a name="l00030"></a>00030     <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classhlfv_1_1Selector.html#ab2dc76de157a42fa84b0fb5a5ecc3787" title="called after looping is finished">Terminate</a>();             
-<a name="l00031"></a>00031     <span class="keyword">virtual</span> Bool_t  <a class="code" href="classhlfv_1_1Selector.html#a7c3be430ced9fb9554f843e60ccc2ee3">Process</a>(Long64_t entry); 
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033 
-<a name="l00036"></a>00036     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classhlfv_1_1Selector.html#ac5bca0df378bec7d92b761fbdf2e968f" title="! whether the current event passes the event criteria (as opposed to object criteria)">passEventCriteria</a>();
-<a name="l00037"></a>00037 <span class="keyword">protected</span>:
-<a name="l00039"></a>00039 
-<a name="l00045"></a>00045     <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classhlfv_1_1Selector.html#a9f2204ca2813aec231d9af743ad17658" title="assign the weight components that depend only on event-level variables">assignStaticWeightComponents</a>(<span class="comment">/*const*/</span> Susy::SusyNtObject &amp;ntobj,
-<a name="l00046"></a>00046                                              <span class="comment">/*const*/</span> MCWeighter &amp;weighter,
-<a name="l00047"></a>00047                                              <a class="code" href="structhlfv_1_1WeightComponents.html" title="A simple struct to pass around the event weight and all its components.">hlfv::WeightComponents</a> &amp;weightComponents);
-<a name="l00049"></a>00049 
-<a name="l00053"></a>00053     <a class="code" href="structhlfv_1_1EventFlags.html" title="A holder to pass around the event-level flags; true = pass (including vetoes)">hlfv::EventFlags</a> <a class="code" href="classhlfv_1_1Selector.html#af890b5a699e81486e200f065e4309c81" title="compute the event-level flags">computeEventFlags</a>();
-<a name="l00055"></a>00055     <span class="keywordtype">void</span> <a class="code" href="classhlfv_1_1Selector.html#ae6027d2ec8916fa08c00b7adf453ff17" title="incremement the event-level counters">incrementEventCounters</a>(<span class="keyword">const</span> <a class="code" href="structhlfv_1_1EventFlags.html" title="A holder to pass around the event-level flags; true = pass (including vetoes)">hlfv::EventFlags</a> &amp;f, <span class="keyword">const</span> <a class="code" href="structhlfv_1_1WeightComponents.html" title="A simple struct to pass around the event weight and all its components.">hlfv::WeightComponents</a> &amp;w);
-<a name="l00056"></a>00056 <span class="keyword">private</span>:
-<a name="l00058"></a>00058     <span class="keywordtype">bool</span> initMcWeighter(TTree *tree);
-<a name="l00059"></a>00059 <span class="keyword">protected</span>:
-<a name="l00060"></a><a class="code" href="classhlfv_1_1Selector.html#ac5ff95b74a8cffd6dc41c2929ae04ba8">00060</a>     DilTrigLogic*       <a class="code" href="classhlfv_1_1Selector.html#ac5ff95b74a8cffd6dc41c2929ae04ba8" title="trigger logic class">m_trigObj</a>;      
-<a name="l00061"></a><a class="code" href="classhlfv_1_1Selector.html#a246fef99fddc03877615ec53f099a92d">00061</a>     MCWeighter*         <a class="code" href="classhlfv_1_1Selector.html#a246fef99fddc03877615ec53f099a92d" title="tool to determine the normalization">m_mcWeighter</a>;   
-<a name="l00062"></a><a class="code" href="classhlfv_1_1Selector.html#aeec67799f78139d9b1ee63117e1d6aec">00062</a>     <a class="code" href="structhlfv_1_1ProgressPrinter.html">hlfv::ProgressPrinter</a> <a class="code" href="classhlfv_1_1Selector.html#aeec67799f78139d9b1ee63117e1d6aec" title="tool to print the progress">m_printer</a>; 
-<a name="l00063"></a><a class="code" href="classhlfv_1_1Selector.html#ac1c81421fadafae7c15966336164e89d">00063</a>     <a class="code" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow.">hlfv::CutFlowCounter</a> <a class="code" href="classhlfv_1_1Selector.html#ac1c81421fadafae7c15966336164e89d" title="counters for cutflow">m_counter</a>; 
-<a name="l00064"></a>00064     ClassDef(<a class="code" href="classhlfv_1_1Selector.html">Selector</a>, 1);
-<a name="l00065"></a>00065 };
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067 } <span class="comment">// hlfv</span>
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">#endif // HLVF_SELECTOR_H</span>
+<a name="l00023"></a>00023 <span class="keyword">class </span>WeightComponents;
+<a name="l00024"></a>00024 <span class="keyword">class </span>EventFlags;
+<a name="l00025"></a>00025 <span class="keyword">class </span>DileptonVariables;
+<a name="l00026"></a>00026 
+<a name="l00027"></a><a class="code" href="classhlfv_1_1Selector.html">00027</a> <span class="keyword">class </span><a class="code" href="classhlfv_1_1Selector.html">Selector</a> : <span class="keyword">public</span> SusyNtAna
+<a name="l00028"></a>00028 {
+<a name="l00029"></a>00029 <span class="keyword">public</span>:
+<a name="l00030"></a>00030     <a class="code" href="classhlfv_1_1Selector.html">Selector</a>();
+<a name="l00031"></a>00031     <span class="keyword">virtual</span> ~<a class="code" href="classhlfv_1_1Selector.html">Selector</a>(){};
+<a name="l00032"></a>00032     <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classhlfv_1_1Selector.html#aed5ad3b08e60d203859c4f575cc87409" title="called before looping on entries">Begin</a>(TTree *tree);      
+<a name="l00033"></a>00033     <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classhlfv_1_1Selector.html#ac1ac1f528dd44ed67212996a82220984" title="called when the TChain is attached">Init</a>(TTree *tree);       
+<a name="l00034"></a>00034     <span class="keyword">virtual</span> <span class="keywordtype">void</span>    <a class="code" href="classhlfv_1_1Selector.html#ab2dc76de157a42fa84b0fb5a5ecc3787" title="called after looping is finished">Terminate</a>();             
+<a name="l00035"></a>00035     <span class="keyword">virtual</span> Bool_t  <a class="code" href="classhlfv_1_1Selector.html#a7c3be430ced9fb9554f843e60ccc2ee3">Process</a>(Long64_t entry); 
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 
+<a name="l00040"></a>00040     <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classhlfv_1_1Selector.html#ac5bca0df378bec7d92b761fbdf2e968f" title="! whether the current event passes the event criteria (as opposed to object criteria)">passEventCriteria</a>();
+<a name="l00041"></a>00041     <a class="code" href="classhlfv_1_1Selector.html">Selector</a>&amp; setEventListFilename(<span class="keyword">const</span> std::string filename);
+<a name="l00042"></a>00042     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classhlfv_1_1Selector.html#a76b4297f938449f26053747e68d3c534">setDebug</a>(<span class="keywordtype">int</span> dbg); 
+<a name="l00043"></a>00043 
+<a name="l00044"></a><a class="code" href="classhlfv_1_1Selector.html#a9772fe12f44f06b14623c30e00134ff7">00044</a>     <a class="code" href="classhlfv_1_1Selector.html">Selector</a>&amp; <a class="code" href="classhlfv_1_1Selector.html#a9772fe12f44f06b14623c30e00134ff7" title="toggle ouput ntuple option">setWriteNtuple</a>(<span class="keywordtype">bool</span> val) { <a class="code" href="classhlfv_1_1Selector.html#a0b49b5b7df0b573ac3a2b32cbf9d48d7" title="whether we want to write the output ntuple">m_writeTuple</a> = val; <span class="keywordflow">return</span> *<span class="keyword">this</span>; }
+<a name="l00045"></a>00045     <a class="code" href="classhlfv_1_1Selector.html">Selector</a>&amp; setTupleFile(<span class="keyword">const</span> std::string &amp;name) { <a class="code" href="classhlfv_1_1Selector.html#a0b49b5b7df0b573ac3a2b32cbf9d48d7" title="whether we want to write the output ntuple">m_writeTuple</a> = <span class="keyword">true</span>; <a class="code" href="classhlfv_1_1Selector.html#a699c918e54be740c53c633d77797af93" title="name of the file where the nutple will be written">m_outTupleFile</a> = name; <span class="keywordflow">return</span> *<span class="keyword">this</span>; }
+<a name="l00046"></a>00046     <span class="keyword">static</span> std::vector&lt;std::string&gt; <a class="code" href="classhlfv_1_1Selector.html#ab35c65dd25e4774ed2bb5a7f5180f762">defaultCutNames</a>(); 
+<a name="l00047"></a>00047 
+<a name="l00048"></a>00048     <span class="keyword">static</span> std::vector&lt;std::string&gt; <a class="code" href="classhlfv_1_1Selector.html#aca1c59a1782f58cc420158677c347348" title="provide the list of default counter names after emu/mue separation (just labelling)">defaultCutNamesSplit</a>();
+<a name="l00049"></a>00049 <span class="keyword">protected</span>:
+<a name="l00051"></a>00051 
+<a name="l00057"></a>00057     <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classhlfv_1_1Selector.html#a9f2204ca2813aec231d9af743ad17658" title="assign the weight components that depend only on event-level variables">assignStaticWeightComponents</a>(<span class="comment">/*const*/</span> Susy::SusyNtObject &amp;ntobj,
+<a name="l00058"></a>00058                                              <span class="comment">/*const*/</span> MCWeighter &amp;weighter,
+<a name="l00059"></a>00059                                              <a class="code" href="structhlfv_1_1WeightComponents.html" title="A simple struct to pass around the event weight and all its components.">hlfv::WeightComponents</a> &amp;weightComponents);
+<a name="l00061"></a>00061 
+<a name="l00065"></a>00065     <span class="keywordtype">bool</span> <a class="code" href="classhlfv_1_1Selector.html#a124fe581fd670b1764a9f7e000053ee3" title="assign the weight components that depend on the object-level variables">assignNonStaticWeightComponents</a>(<span class="keyword">const</span> LeptonVector&amp; leptons,
+<a name="l00066"></a>00066                                          <span class="keyword">const</span> JetVector&amp; jets,
+<a name="l00067"></a>00067                                          <span class="keyword">const</span> hlfv::Systematic::Value sys,
+<a name="l00068"></a>00068                                          <a class="code" href="structhlfv_1_1WeightComponents.html" title="A simple struct to pass around the event weight and all its components.">hlfv::WeightComponents</a> &amp;weightcomponents);
+<a name="l00070"></a>00070 
+<a name="l00074"></a>00074     <a class="code" href="structhlfv_1_1EventFlags.html" title="A holder to pass around the event-level flags; true = pass (including vetoes)">hlfv::EventFlags</a> <a class="code" href="classhlfv_1_1Selector.html#af890b5a699e81486e200f065e4309c81" title="compute the event-level flags">computeEventFlags</a>();
+<a name="l00076"></a>00076     <span class="keywordtype">void</span> <a class="code" href="classhlfv_1_1Selector.html#ae6027d2ec8916fa08c00b7adf453ff17" title="incremement the event-level counters">incrementEventCounters</a>(<span class="keyword">const</span> <a class="code" href="structhlfv_1_1EventFlags.html" title="A holder to pass around the event-level flags; true = pass (including vetoes)">hlfv::EventFlags</a> &amp;f, <span class="keyword">const</span> <a class="code" href="structhlfv_1_1WeightComponents.html" title="A simple struct to pass around the event weight and all its components.">hlfv::WeightComponents</a> &amp;w);
+<a name="l00078"></a>00078     <span class="keywordtype">void</span> <a class="code" href="classhlfv_1_1Selector.html#a0aa3f200f68926b37b3a6ddfad0d9629" title="incremement the event counters after the emu/mue splitting">incrementEventSplitCounters</a>(<span class="keyword">const</span> <a class="code" href="structhlfv_1_1DileptonVariables.html" title="Kinematic variables for the hlfv study.">hlfv::DileptonVariables</a> &amp;v, <span class="keyword">const</span> <a class="code" href="structhlfv_1_1WeightComponents.html" title="A simple struct to pass around the event weight and all its components.">hlfv::WeightComponents</a> &amp;w);
+<a name="l00080"></a>00080 
+<a name="l00083"></a>00083     <span class="keywordtype">double</span> <a class="code" href="classhlfv_1_1Selector.html#aea0fcb7264aca41e089875bf01eac152" title="dilepton trigger weight">computeDileptonTriggerWeight</a>(<span class="keyword">const</span> LeptonVector &amp;leptons, <span class="keyword">const</span> hlfv::Systematic::Value sys);
+<a name="l00085"></a>00085 
+<a name="l00088"></a>00088     <span class="keywordtype">double</span> <a class="code" href="classhlfv_1_1Selector.html#a2a5349cc68d1b5127f30382661b10473" title="btag scale factor">computeBtagWeight</a>(<span class="keyword">const</span> JetVector&amp; jets, <span class="keyword">const</span> Susy::Event* evt, <span class="keyword">const</span> hlfv::Systematic::Value sys);
+<a name="l00090"></a>00090     <span class="keyword">static</span> JetVector <a class="code" href="classhlfv_1_1Selector.html#ade2daa5853a1ac7a0f888f10ef9b1467" title="select the jets we are interested in (central, high-pt)">filterJets</a>(<span class="keyword">const</span> JetVector &amp;jets, JVFUncertaintyTool* jvfTool,
+<a name="l00091"></a>00091                                 <span class="keyword">const</span> hlfv::Systematic::Value sys,
+<a name="l00092"></a>00092                                 AnalysisType anaType);
+<a name="l00094"></a>00094     <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code" href="classhlfv_1_1Selector.html#a1708946e80a761199cf5b6a6801567e6" title="lepton efficiency data/simulation scale factor">computeLeptonEfficiencySf</a>(<span class="keyword">const</span> Susy::Lepton &amp;lep, <span class="keyword">const</span> hlfv::Systematic::Value sys);
+<a name="l00096"></a>00096     <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classhlfv_1_1Selector.html#a452e527d961777ca8b43744ad16f4119" title="exactly one electron and one muon">eventIsEmu</a>(<span class="keyword">const</span> LeptonVector &amp;leptons);
+<a name="l00097"></a>00097 <span class="keyword">private</span>:
+<a name="l00099"></a>00099     <span class="keywordtype">bool</span> initMcWeighter(TTree *tree);
+<a name="l00101"></a>00101     <span class="keywordtype">bool</span> usingEventList()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code" href="classhlfv_1_1Selector.html#acdff3ddfa4c84d1867bc1847a7d4bf2e" title="name of the file with the eventlist (empty string means don&#39;t use this feature)">m_eventListFilename</a>.size()&gt;0; }
+<a name="l00103"></a>00103 
+<a name="l00110"></a>00110     <span class="keywordtype">bool</span> initEventList(TTree *tree);
+<a name="l00111"></a>00111 <span class="keyword">protected</span>:
+<a name="l00112"></a><a class="code" href="classhlfv_1_1Selector.html#ac5ff95b74a8cffd6dc41c2929ae04ba8">00112</a>     DilTrigLogic*       <a class="code" href="classhlfv_1_1Selector.html#ac5ff95b74a8cffd6dc41c2929ae04ba8" title="trigger logic class">m_trigObj</a>;      
+<a name="l00113"></a><a class="code" href="classhlfv_1_1Selector.html#a246fef99fddc03877615ec53f099a92d">00113</a>     MCWeighter*         <a class="code" href="classhlfv_1_1Selector.html#a246fef99fddc03877615ec53f099a92d" title="tool to determine the normalization">m_mcWeighter</a>;   
+<a name="l00114"></a><a class="code" href="classhlfv_1_1Selector.html#aeec67799f78139d9b1ee63117e1d6aec">00114</a>     <a class="code" href="structhlfv_1_1ProgressPrinter.html">hlfv::ProgressPrinter</a> <a class="code" href="classhlfv_1_1Selector.html#aeec67799f78139d9b1ee63117e1d6aec" title="tool to print the progress">m_printer</a>; 
+<a name="l00115"></a><a class="code" href="classhlfv_1_1Selector.html#ac1c81421fadafae7c15966336164e89d">00115</a>     <a class="code" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow.">hlfv::CutFlowCounter</a> <a class="code" href="classhlfv_1_1Selector.html#ac1c81421fadafae7c15966336164e89d" title="counters for cutflow">m_counter</a>; 
+<a name="l00116"></a><a class="code" href="classhlfv_1_1Selector.html#a38e456a8dfe511ad3bf8655a4e0d0790">00116</a>     <a class="code" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow.">hlfv::CutFlowCounter</a> <a class="code" href="classhlfv_1_1Selector.html#a38e456a8dfe511ad3bf8655a4e0d0790" title="counters for cutflow (after channel split, only emu)">m_counterEmu</a>; 
+<a name="l00117"></a><a class="code" href="classhlfv_1_1Selector.html#a7fddf1c1fa94b1e7c29b12065d65f929">00117</a>     <a class="code" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow.">hlfv::CutFlowCounter</a> <a class="code" href="classhlfv_1_1Selector.html#a7fddf1c1fa94b1e7c29b12065d65f929" title="counters for cutflow (after channel split, only mue)">m_counterMue</a>; 
+<a name="l00118"></a><a class="code" href="classhlfv_1_1Selector.html#acdff3ddfa4c84d1867bc1847a7d4bf2e">00118</a>     std::string <a class="code" href="classhlfv_1_1Selector.html#acdff3ddfa4c84d1867bc1847a7d4bf2e" title="name of the file with the eventlist (empty string means don&#39;t use this feature)">m_eventListFilename</a>; 
+<a name="l00119"></a><a class="code" href="classhlfv_1_1Selector.html#ab055d984e2b4200ba7ec4992aa63961a">00119</a>     <span class="keywordtype">bool</span> <a class="code" href="classhlfv_1_1Selector.html#ab055d984e2b4200ba7ec4992aa63961a" title="to keep track of whether there is already an event list">m_useExistingList</a>;        
+<a name="l00120"></a><a class="code" href="classhlfv_1_1Selector.html#a1de98fb1dcbe219ffc15cefb5f2e95b1">00120</a>     Susy::EventlistHandler <a class="code" href="classhlfv_1_1Selector.html#a1de98fb1dcbe219ffc15cefb5f2e95b1" title="the actual event list">m_eventList</a>; 
+<a name="l00121"></a><a class="code" href="classhlfv_1_1Selector.html#a027b413effee248bad27be1cc9568dec">00121</a>     <a class="code" href="classhlfv_1_1TupleMaker.html">hlfv::TupleMaker</a> <a class="code" href="classhlfv_1_1Selector.html#a027b413effee248bad27be1cc9568dec" title="writer of our analysis nutples">m_tupleMaker</a>; 
+<a name="l00122"></a><a class="code" href="classhlfv_1_1Selector.html#a0b49b5b7df0b573ac3a2b32cbf9d48d7">00122</a>     <span class="keywordtype">bool</span> <a class="code" href="classhlfv_1_1Selector.html#a0b49b5b7df0b573ac3a2b32cbf9d48d7" title="whether we want to write the output ntuple">m_writeTuple</a>; 
+<a name="l00123"></a><a class="code" href="classhlfv_1_1Selector.html#a699c918e54be740c53c633d77797af93">00123</a>     std::string <a class="code" href="classhlfv_1_1Selector.html#a699c918e54be740c53c633d77797af93" title="name of the file where the nutple will be written">m_outTupleFile</a>; 
+<a name="l00124"></a>00124     ClassDef(<a class="code" href="classhlfv_1_1Selector.html">Selector</a>, 1);
+<a name="l00125"></a>00125 };
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127 } <span class="comment">// hlfv</span>
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129 <span class="preprocessor">#endif // HLVF_SELECTOR_H</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

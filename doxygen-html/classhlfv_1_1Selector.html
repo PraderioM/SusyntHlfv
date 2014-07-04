@@ -48,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -79,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><b>hlfv</b>      </li>
+      <li class="navelem"><a class="el" href="namespacehlfv.html">hlfv</a>      </li>
       <li class="navelem"><a class="el" href="classhlfv_1_1Selector.html">Selector</a>      </li>
     </ul>
   </div>
@@ -98,6 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-static-methods">Static Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
@@ -110,7 +112,7 @@ Collaboration diagram for hlfv::Selector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classhlfv_1_1Selector__coll__graph.png" border="0" usemap="#hlfv_1_1Selector_coll__map" alt="Collaboration graph"/></div>
 <map name="hlfv_1_1Selector_coll__map" id="hlfv_1_1Selector_coll__map">
-<area shape="rect" id="node2" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow." alt="" coords="5,5,155,35"/><area shape="rect" id="node4" href="structhlfv_1_1ProgressPrinter.html" title="hlfv::ProgressPrinter" alt="" coords="179,5,328,35"/></map>
+<area shape="rect" id="node2" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow." alt="" coords="5,5,155,35"/><area shape="rect" id="node4" href="structhlfv_1_1ProgressPrinter.html" title="hlfv::ProgressPrinter" alt="" coords="179,5,328,35"/><area shape="rect" id="node8" href="classhlfv_1_1TupleMaker.html" title="hlfv::TupleMaker" alt="" coords="471,5,593,35"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classhlfv_1_1Selector-members.html">List of all members.</a></p>
@@ -129,19 +131,51 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top">virtual Bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a7c3be430ced9fb9554f843e60ccc2ee3">Process</a> (Long64_t entry)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ac5bca0df378bec7d92b761fbdf2e968f">passEventCriteria</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">! whether the current event passes the event criteria (as opposed to object criteria)  <a href="#ac5bca0df378bec7d92b761fbdf2e968f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1df02879d4bf37d80a3d323e77cb700f"></a><!-- doxytag: member="hlfv::Selector::setEventListFilename" ref="a1df02879d4bf37d80a3d323e77cb700f" args="(const std::string filename)" -->
+<a class="el" href="classhlfv_1_1Selector.html">Selector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setEventListFilename</b> (const std::string filename)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a76b4297f938449f26053747e68d3c534">setDebug</a> (int dbg)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9772fe12f44f06b14623c30e00134ff7"></a><!-- doxytag: member="hlfv::Selector::setWriteNtuple" ref="a9772fe12f44f06b14623c30e00134ff7" args="(bool val)" -->
+<a class="el" href="classhlfv_1_1Selector.html">Selector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a9772fe12f44f06b14623c30e00134ff7">setWriteNtuple</a> (bool val)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">toggle ouput ntuple option <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add8e749b192c92f9dddbe36f47ac4803"></a><!-- doxytag: member="hlfv::Selector::setTupleFile" ref="add8e749b192c92f9dddbe36f47ac4803" args="(const std::string &amp;name)" -->
+<a class="el" href="classhlfv_1_1Selector.html">Selector</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>setTupleFile</b> (const std::string &amp;name)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ab35c65dd25e4774ed2bb5a7f5180f762">defaultCutNames</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca1c59a1782f58cc420158677c347348"></a><!-- doxytag: member="hlfv::Selector::defaultCutNamesSplit" ref="aca1c59a1782f58cc420158677c347348" args="()" -->
+static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#aca1c59a1782f58cc420158677c347348">defaultCutNamesSplit</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">provide the list of default counter names after emu/mue separation (just labelling) <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a124fe581fd670b1764a9f7e000053ee3">assignNonStaticWeightComponents</a> (const LeptonVector &amp;leptons, const JetVector &amp;jets, const hlfv::Systematic::Value sys, <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;weightcomponents)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">assign the weight components that depend on the object-level variables  <a href="#a124fe581fd670b1764a9f7e000053ee3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhlfv_1_1EventFlags.html">hlfv::EventFlags</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#af890b5a699e81486e200f065e4309c81">computeEventFlags</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the event-level flags  <a href="#af890b5a699e81486e200f065e4309c81"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6027d2ec8916fa08c00b7adf453ff17"></a><!-- doxytag: member="hlfv::Selector::incrementEventCounters" ref="ae6027d2ec8916fa08c00b7adf453ff17" args="(const hlfv::EventFlags &amp;f, const hlfv::WeightComponents &amp;w)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ae6027d2ec8916fa08c00b7adf453ff17">incrementEventCounters</a> (const <a class="el" href="structhlfv_1_1EventFlags.html">hlfv::EventFlags</a> &amp;f, const <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;w)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">incremement the event-level counters <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0aa3f200f68926b37b3a6ddfad0d9629"></a><!-- doxytag: member="hlfv::Selector::incrementEventSplitCounters" ref="a0aa3f200f68926b37b3a6ddfad0d9629" args="(const hlfv::DileptonVariables &amp;v, const hlfv::WeightComponents &amp;w)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a0aa3f200f68926b37b3a6ddfad0d9629">incrementEventSplitCounters</a> (const <a class="el" href="structhlfv_1_1DileptonVariables.html">hlfv::DileptonVariables</a> &amp;v, const <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;w)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">incremement the event counters after the emu/mue splitting <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#aea0fcb7264aca41e089875bf01eac152">computeDileptonTriggerWeight</a> (const LeptonVector &amp;leptons, const hlfv::Systematic::Value sys)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">dilepton trigger weight  <a href="#aea0fcb7264aca41e089875bf01eac152"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a2a5349cc68d1b5127f30382661b10473">computeBtagWeight</a> (const JetVector &amp;jets, const Susy::Event *evt, const hlfv::Systematic::Value sys)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">btag scale factor  <a href="#a2a5349cc68d1b5127f30382661b10473"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2573a13527fbc3417fdcc96aacf459f2"></a><!-- doxytag: member="hlfv::Selector::ClassDef" ref="a2573a13527fbc3417fdcc96aacf459f2" args="(Selector, 1)" -->
 &#160;</td><td class="memItemRight" valign="bottom"><b>ClassDef</b> (<a class="el" href="classhlfv_1_1Selector.html">Selector</a>, 1)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a9f2204ca2813aec231d9af743ad17658">assignStaticWeightComponents</a> (Susy::SusyNtObject &amp;ntobj, MCWeighter &amp;weighter, <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;weightComponents)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">assign the weight components that depend only on event-level variables  <a href="#a9f2204ca2813aec231d9af743ad17658"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade2daa5853a1ac7a0f888f10ef9b1467"></a><!-- doxytag: member="hlfv::Selector::filterJets" ref="ade2daa5853a1ac7a0f888f10ef9b1467" args="(const JetVector &amp;jets, JVFUncertaintyTool *jvfTool, const hlfv::Systematic::Value sys, AnalysisType anaType)" -->
+static JetVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ade2daa5853a1ac7a0f888f10ef9b1467">filterJets</a> (const JetVector &amp;jets, JVFUncertaintyTool *jvfTool, const hlfv::Systematic::Value sys, AnalysisType anaType)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">select the jets we are interested in (central, high-pt) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1708946e80a761199cf5b6a6801567e6"></a><!-- doxytag: member="hlfv::Selector::computeLeptonEfficiencySf" ref="a1708946e80a761199cf5b6a6801567e6" args="(const Susy::Lepton &amp;lep, const hlfv::Systematic::Value sys)" -->
+static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a1708946e80a761199cf5b6a6801567e6">computeLeptonEfficiencySf</a> (const Susy::Lepton &amp;lep, const hlfv::Systematic::Value sys)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">lepton efficiency data/simulation scale factor <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a452e527d961777ca8b43744ad16f4119"></a><!-- doxytag: member="hlfv::Selector::eventIsEmu" ref="a452e527d961777ca8b43744ad16f4119" args="(const LeptonVector &amp;leptons)" -->
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a452e527d961777ca8b43744ad16f4119">eventIsEmu</a> (const LeptonVector &amp;leptons)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">exactly one electron and one muon <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5ff95b74a8cffd6dc41c2929ae04ba8"></a><!-- doxytag: member="hlfv::Selector::m_trigObj" ref="ac5ff95b74a8cffd6dc41c2929ae04ba8" args="" -->
@@ -156,8 +190,74 @@ MCWeighter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1c81421fadafae7c15966336164e89d"></a><!-- doxytag: member="hlfv::Selector::m_counter" ref="ac1c81421fadafae7c15966336164e89d" args="" -->
 <a class="el" href="classhlfv_1_1CutFlowCounter.html">hlfv::CutFlowCounter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ac1c81421fadafae7c15966336164e89d">m_counter</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">counters for cutflow <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38e456a8dfe511ad3bf8655a4e0d0790"></a><!-- doxytag: member="hlfv::Selector::m_counterEmu" ref="a38e456a8dfe511ad3bf8655a4e0d0790" args="" -->
+<a class="el" href="classhlfv_1_1CutFlowCounter.html">hlfv::CutFlowCounter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a38e456a8dfe511ad3bf8655a4e0d0790">m_counterEmu</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">counters for cutflow (after channel split, only emu) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fddf1c1fa94b1e7c29b12065d65f929"></a><!-- doxytag: member="hlfv::Selector::m_counterMue" ref="a7fddf1c1fa94b1e7c29b12065d65f929" args="" -->
+<a class="el" href="classhlfv_1_1CutFlowCounter.html">hlfv::CutFlowCounter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a7fddf1c1fa94b1e7c29b12065d65f929">m_counterMue</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">counters for cutflow (after channel split, only mue) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdff3ddfa4c84d1867bc1847a7d4bf2e"></a><!-- doxytag: member="hlfv::Selector::m_eventListFilename" ref="acdff3ddfa4c84d1867bc1847a7d4bf2e" args="" -->
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#acdff3ddfa4c84d1867bc1847a7d4bf2e">m_eventListFilename</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the file with the eventlist (empty string means don't use this feature) <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab055d984e2b4200ba7ec4992aa63961a"></a><!-- doxytag: member="hlfv::Selector::m_useExistingList" ref="ab055d984e2b4200ba7ec4992aa63961a" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ab055d984e2b4200ba7ec4992aa63961a">m_useExistingList</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">to keep track of whether there is already an event list <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1de98fb1dcbe219ffc15cefb5f2e95b1"></a><!-- doxytag: member="hlfv::Selector::m_eventList" ref="a1de98fb1dcbe219ffc15cefb5f2e95b1" args="" -->
+Susy::EventlistHandler&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a1de98fb1dcbe219ffc15cefb5f2e95b1">m_eventList</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">the actual event list <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a027b413effee248bad27be1cc9568dec"></a><!-- doxytag: member="hlfv::Selector::m_tupleMaker" ref="a027b413effee248bad27be1cc9568dec" args="" -->
+<a class="el" href="classhlfv_1_1TupleMaker.html">hlfv::TupleMaker</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a027b413effee248bad27be1cc9568dec">m_tupleMaker</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">writer of our analysis nutples <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b49b5b7df0b573ac3a2b32cbf9d48d7"></a><!-- doxytag: member="hlfv::Selector::m_writeTuple" ref="a0b49b5b7df0b573ac3a2b32cbf9d48d7" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a0b49b5b7df0b573ac3a2b32cbf9d48d7">m_writeTuple</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">whether we want to write the output ntuple <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a699c918e54be740c53c633d77797af93"></a><!-- doxytag: member="hlfv::Selector::m_outTupleFile" ref="a699c918e54be740c53c633d77797af93" args="" -->
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a699c918e54be740c53c633d77797af93">m_outTupleFile</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the file where the nutple will be written <br/></td></tr>
 </table>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a124fe581fd670b1764a9f7e000053ee3"></a><!-- doxytag: member="hlfv::Selector::assignNonStaticWeightComponents" ref="a124fe581fd670b1764a9f7e000053ee3" args="(const LeptonVector &amp;leptons, const JetVector &amp;jets, const hlfv::Systematic::Value sys, hlfv::WeightComponents &amp;weightcomponents)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classhlfv_1_1Selector.html#a124fe581fd670b1764a9f7e000053ee3">Selector::assignNonStaticWeightComponents</a> </td>
+          <td>(</td>
+          <td class="paramtype">const LeptonVector &amp;&#160;</td>
+          <td class="paramname"><em>leptons</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const JetVector &amp;&#160;</td>
+          <td class="paramname"><em>jets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const hlfv::Systematic::Value&#160;</td>
+          <td class="paramname"><em>sys</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;&#160;</td>
+          <td class="paramname"><em>weightcomponents</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>assign the weight components that depend on the object-level variables </p>
+<p>The output values are assigned to weightcomponents; need access to trigger and btag tools, so cannot be static. </p>
+
+</div>
+</div>
 <a class="anchor" id="a9f2204ca2813aec231d9af743ad17658"></a><!-- doxytag: member="hlfv::Selector::assignStaticWeightComponents" ref="a9f2204ca2813aec231d9af743ad17658" args="(Susy::SusyNtObject &amp;ntobj, MCWeighter &amp;weighter, hlfv::WeightComponents &amp;weightComponents)" -->
 <div class="memitem">
 <div class="memproto">
@@ -197,6 +297,72 @@ MCWeighter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
+<a class="anchor" id="a2a5349cc68d1b5127f30382661b10473"></a><!-- doxytag: member="hlfv::Selector::computeBtagWeight" ref="a2a5349cc68d1b5127f30382661b10473" args="(const JetVector &amp;jets, const Susy::Event *evt, const hlfv::Systematic::Value sys)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classhlfv_1_1Selector.html#a2a5349cc68d1b5127f30382661b10473">Selector::computeBtagWeight</a> </td>
+          <td>(</td>
+          <td class="paramtype">const JetVector &amp;&#160;</td>
+          <td class="paramname"><em>jets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Susy::Event *&#160;</td>
+          <td class="paramname"><em>evt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const hlfv::Systematic::Value&#160;</td>
+          <td class="paramname"><em>sys</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>btag scale factor </p>
+<p>Need access to several internal variables, so cannot be static </p>
+
+</div>
+</div>
+<a class="anchor" id="aea0fcb7264aca41e089875bf01eac152"></a><!-- doxytag: member="hlfv::Selector::computeDileptonTriggerWeight" ref="aea0fcb7264aca41e089875bf01eac152" args="(const LeptonVector &amp;leptons, const hlfv::Systematic::Value sys)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classhlfv_1_1Selector.html#aea0fcb7264aca41e089875bf01eac152">Selector::computeDileptonTriggerWeight</a> </td>
+          <td>(</td>
+          <td class="paramtype">const LeptonVector &amp;&#160;</td>
+          <td class="paramname"><em>leptons</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const hlfv::Systematic::Value&#160;</td>
+          <td class="paramname"><em>sys</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>dilepton trigger weight </p>
+<p>Need access to several internal variables, so cannot be static </p>
+
+</div>
+</div>
 <a class="anchor" id="af890b5a699e81486e200f065e4309c81"></a><!-- doxytag: member="hlfv::Selector::computeEventFlags" ref="af890b5a699e81486e200f065e4309c81" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -213,6 +379,23 @@ MCWeighter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 <p>compute the event-level flags </p>
 <p>Note that some of these quantities actually depend on the baseline objects, so you need to call it after selectObjects(). </p>
+
+</div>
+</div>
+<a class="anchor" id="ab35c65dd25e4774ed2bb5a7f5180f762"></a><!-- doxytag: member="hlfv::Selector::defaultCutNames" ref="ab35c65dd25e4774ed2bb5a7f5180f762" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; <a class="el" href="classhlfv_1_1Selector.html#ab35c65dd25e4774ed2bb5a7f5180f762">Selector::defaultCutNames</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>provide the list of default counter names (just labelling) </p>
 
 </div>
 </div>
@@ -253,6 +436,24 @@ MCWeighter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
+<a class="anchor" id="a76b4297f938449f26053747e68d3c534"></a><!-- doxytag: member="hlfv::Selector::setDebug" ref="a76b4297f938449f26053747e68d3c534" args="(int dbg)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classhlfv_1_1Selector.html#a76b4297f938449f26053747e68d3c534">Selector::setDebug</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dbg</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>overload SusyNtAna::setDebug </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>SusyntHlfv/<a class="el" href="Selector_8h_source.html">Selector.h</a></li>
 <li>Root/Selector.cxx</li>
@@ -263,7 +464,7 @@ MCWeighter *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

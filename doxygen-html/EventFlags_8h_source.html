@@ -48,6 +48,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -100,20 +101,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00024"></a>00024     <span class="keywordflow">return</span>  (grl &amp;&amp; larErr &amp;&amp; tileErr &amp;&amp; ttcVeto &amp;&amp; goodVtx &amp;&amp; tileTrip &amp;&amp; lAr &amp;&amp;
 <a name="l00025"></a>00025              badJet &amp;&amp; deadRegions &amp;&amp; badMuon &amp;&amp; cosmicMuon &amp;&amp; hfor &amp;&amp; ge2blep &amp;&amp; eq2blep &amp;&amp; mllMin);
 <a name="l00026"></a>00026   }
-<a name="l00027"></a>00027   <span class="keywordtype">bool</span> failAny() { <span class="keywordflow">return</span> !allTrue(); }
-<a name="l00028"></a>00028   std::string str() <span class="keyword">const</span>;
-<a name="l00029"></a>00029 };
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 } <span class="comment">// namespace hlfv</span>
-<a name="l00032"></a>00032 
-<a name="l00033"></a>00033 <span class="preprocessor">#endif // end include guard</span>
+<a name="l00027"></a>00027   <span class="keywordtype">bool</span> passAllEventCriteria() { <span class="keywordflow">return</span> allTrue(); }
+<a name="l00028"></a>00028   <span class="keywordtype">bool</span> failAny() { <span class="keywordflow">return</span> !allTrue(); }
+<a name="l00029"></a>00029   std::string str() <span class="keyword">const</span>;
+<a name="l00030"></a>00030 };
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032 } <span class="comment">// namespace hlfv</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="preprocessor">#endif // end include guard</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
