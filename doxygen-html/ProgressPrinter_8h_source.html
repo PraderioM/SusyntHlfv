@@ -89,30 +89,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="keyword">namespace </span>hlfv
 <a name="l00009"></a>00009 {
-<a name="l00019"></a><a class="code" href="structhlfv_1_1ProgressPrinter.html">00019</a>   <span class="keyword">struct </span><a class="code" href="structhlfv_1_1ProgressPrinter.html">ProgressPrinter</a> {
-<a name="l00020"></a>00020     <a class="code" href="structhlfv_1_1ProgressPrinter.html">ProgressPrinter</a>(<span class="keywordtype">int</span> suppressionFactor=2, <span class="keywordtype">int</span> suppressionOffset=300, <span class="keywordtype">bool</span> quiet=<span class="keyword">false</span>):
-<a name="l00021"></a>00021       m_suppressionFactor(suppressionFactor),
-<a name="l00022"></a>00022       m_suppressionOffset(suppressionOffset),
-<a name="l00023"></a>00023       m_eventCounter(0),
-<a name="l00024"></a>00024       m_intCounter(1),
-<a name="l00025"></a>00025       m_quiet(quiet) {};
-<a name="l00026"></a>00026     <span class="keywordtype">int</span> m_suppressionFactor;
-<a name="l00027"></a>00027     <span class="keywordtype">int</span> m_suppressionOffset;
-<a name="l00028"></a>00028     Long64_t m_eventCounter;
-<a name="l00029"></a>00029     Long64_t m_intCounter;
-<a name="l00030"></a>00030     <span class="keywordtype">bool</span> m_quiet;
-<a name="l00031"></a>00031     <span class="keywordtype">void</span> countAndPrint(std::ostream&amp; oo);
-<a name="l00032"></a>00032   };
-<a name="l00033"></a>00033 } <span class="comment">// hlfv</span>
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="preprocessor">#endif</span>
+<a name="l00011"></a>00011 
+<a name="l00018"></a><a class="code" href="structhlfv_1_1ProgressPrinter.html">00018</a>   <span class="keyword">struct </span><a class="code" href="structhlfv_1_1ProgressPrinter.html" title="A simple struct to print a timestamped line with the number of processed events.">ProgressPrinter</a> {
+<a name="l00019"></a>00019     <a class="code" href="structhlfv_1_1ProgressPrinter.html" title="A simple struct to print a timestamped line with the number of processed events.">ProgressPrinter</a>(<span class="keywordtype">int</span> suppressionFactor=2, <span class="keywordtype">int</span> suppressionOffset=300, <span class="keywordtype">bool</span> quiet=<span class="keyword">false</span>):
+<a name="l00020"></a>00020       m_suppressionFactor(suppressionFactor),
+<a name="l00021"></a>00021       m_suppressionOffset(suppressionOffset),
+<a name="l00022"></a>00022       m_eventCounter(0),
+<a name="l00023"></a>00023       m_intCounter(1),
+<a name="l00024"></a>00024       m_quiet(quiet) {};
+<a name="l00025"></a>00025     <span class="keywordtype">int</span> m_suppressionFactor;
+<a name="l00026"></a>00026     <span class="keywordtype">int</span> m_suppressionOffset;
+<a name="l00027"></a>00027     Long64_t m_eventCounter;
+<a name="l00028"></a>00028     Long64_t m_intCounter;
+<a name="l00029"></a>00029     <span class="keywordtype">bool</span> m_quiet;
+<a name="l00030"></a>00030     <span class="keywordtype">void</span> countAndPrint(std::ostream&amp; oo);
+<a name="l00031"></a>00031   };
+<a name="l00032"></a>00032 } <span class="comment">// hlfv</span>
+<a name="l00033"></a>00033 
+<a name="l00034"></a>00034 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">

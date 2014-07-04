@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,12 +107,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">hlfv::Selector Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<!-- doxytag: class="hlfv::Selector" --><div class="dynheader">
+<!-- doxytag: class="hlfv::Selector" -->
+<p>TSelector implementing the HLFV event selection.  
+ <a href="classhlfv_1_1Selector.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Selector_8h_source.html">Selector.h</a>&gt;</code></p>
+<div class="dynheader">
 Collaboration diagram for hlfv::Selector:</div>
 <div class="dyncontent">
 <div class="center"><img src="classhlfv_1_1Selector__coll__graph.png" border="0" usemap="#hlfv_1_1Selector_coll__map" alt="Collaboration graph"/></div>
 <map name="hlfv_1_1Selector_coll__map" id="hlfv_1_1Selector_coll__map">
-<area shape="rect" id="node2" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow." alt="" coords="5,5,155,35"/><area shape="rect" id="node4" href="structhlfv_1_1ProgressPrinter.html" title="hlfv::ProgressPrinter" alt="" coords="179,5,328,35"/><area shape="rect" id="node8" href="classhlfv_1_1TupleMaker.html" title="hlfv::TupleMaker" alt="" coords="471,5,593,35"/></map>
+<area shape="rect" id="node2" href="classhlfv_1_1CutFlowCounter.html" title="A counter to keep track of the event counts in the cutflow." alt="" coords="5,5,155,35"/><area shape="rect" id="node4" href="structhlfv_1_1ProgressPrinter.html" title="A simple struct to print a timestamped line with the number of processed events." alt="" coords="179,5,328,35"/><area shape="rect" id="node8" href="classhlfv_1_1TupleMaker.html" title="A class to save the information from SusyNt to a simpler ntuple." alt="" coords="471,5,593,35"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 
 <p><a href="classhlfv_1_1Selector-members.html">List of all members.</a></p>
@@ -147,7 +152,7 @@ static std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valig
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">provide the list of default counter names after emu/mue separation (just labelling) <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a124fe581fd670b1764a9f7e000053ee3">assignNonStaticWeightComponents</a> (const LeptonVector &amp;leptons, const JetVector &amp;jets, const hlfv::Systematic::Value sys, <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;weightcomponents)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a124fe581fd670b1764a9f7e000053ee3">assignNonStaticWeightComponents</a> (const LeptonVector &amp;leptons, const JetVector &amp;jets, const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a> sys, <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;weightcomponents)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">assign the weight components that depend on the object-level variables  <a href="#a124fe581fd670b1764a9f7e000053ee3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structhlfv_1_1EventFlags.html">hlfv::EventFlags</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#af890b5a699e81486e200f065e4309c81">computeEventFlags</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">compute the event-level flags  <a href="#af890b5a699e81486e200f065e4309c81"></a><br/></td></tr>
@@ -157,9 +162,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0aa3f200f68926b37b3a6ddfad0d9629"></a><!-- doxytag: member="hlfv::Selector::incrementEventSplitCounters" ref="a0aa3f200f68926b37b3a6ddfad0d9629" args="(const hlfv::DileptonVariables &amp;v, const hlfv::WeightComponents &amp;w)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a0aa3f200f68926b37b3a6ddfad0d9629">incrementEventSplitCounters</a> (const <a class="el" href="structhlfv_1_1DileptonVariables.html">hlfv::DileptonVariables</a> &amp;v, const <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;w)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">incremement the event counters after the emu/mue splitting <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#aea0fcb7264aca41e089875bf01eac152">computeDileptonTriggerWeight</a> (const LeptonVector &amp;leptons, const hlfv::Systematic::Value sys)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#aea0fcb7264aca41e089875bf01eac152">computeDileptonTriggerWeight</a> (const LeptonVector &amp;leptons, const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a> sys)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">dilepton trigger weight  <a href="#aea0fcb7264aca41e089875bf01eac152"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a2a5349cc68d1b5127f30382661b10473">computeBtagWeight</a> (const JetVector &amp;jets, const Susy::Event *evt, const hlfv::Systematic::Value sys)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a2a5349cc68d1b5127f30382661b10473">computeBtagWeight</a> (const JetVector &amp;jets, const Susy::Event *evt, const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a> sys)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">btag scale factor  <a href="#a2a5349cc68d1b5127f30382661b10473"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2573a13527fbc3417fdcc96aacf459f2"></a><!-- doxytag: member="hlfv::Selector::ClassDef" ref="a2573a13527fbc3417fdcc96aacf459f2" args="(Selector, 1)" -->
 &#160;</td><td class="memItemRight" valign="bottom"><b>ClassDef</b> (<a class="el" href="classhlfv_1_1Selector.html">Selector</a>, 1)</td></tr>
@@ -168,10 +173,10 @@ Static Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a9f2204ca2813aec231d9af743ad17658">assignStaticWeightComponents</a> (Susy::SusyNtObject &amp;ntobj, MCWeighter &amp;weighter, <a class="el" href="structhlfv_1_1WeightComponents.html">hlfv::WeightComponents</a> &amp;weightComponents)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">assign the weight components that depend only on event-level variables  <a href="#a9f2204ca2813aec231d9af743ad17658"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade2daa5853a1ac7a0f888f10ef9b1467"></a><!-- doxytag: member="hlfv::Selector::filterJets" ref="ade2daa5853a1ac7a0f888f10ef9b1467" args="(const JetVector &amp;jets, JVFUncertaintyTool *jvfTool, const hlfv::Systematic::Value sys, AnalysisType anaType)" -->
-static JetVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ade2daa5853a1ac7a0f888f10ef9b1467">filterJets</a> (const JetVector &amp;jets, JVFUncertaintyTool *jvfTool, const hlfv::Systematic::Value sys, AnalysisType anaType)</td></tr>
+static JetVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#ade2daa5853a1ac7a0f888f10ef9b1467">filterJets</a> (const JetVector &amp;jets, JVFUncertaintyTool *jvfTool, const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a> sys, AnalysisType anaType)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">select the jets we are interested in (central, high-pt) <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1708946e80a761199cf5b6a6801567e6"></a><!-- doxytag: member="hlfv::Selector::computeLeptonEfficiencySf" ref="a1708946e80a761199cf5b6a6801567e6" args="(const Susy::Lepton &amp;lep, const hlfv::Systematic::Value sys)" -->
-static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a1708946e80a761199cf5b6a6801567e6">computeLeptonEfficiencySf</a> (const Susy::Lepton &amp;lep, const hlfv::Systematic::Value sys)</td></tr>
+static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a1708946e80a761199cf5b6a6801567e6">computeLeptonEfficiencySf</a> (const Susy::Lepton &amp;lep, const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a> sys)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">lepton efficiency data/simulation scale factor <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a452e527d961777ca8b43744ad16f4119"></a><!-- doxytag: member="hlfv::Selector::eventIsEmu" ref="a452e527d961777ca8b43744ad16f4119" args="(const LeptonVector &amp;leptons)" -->
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a452e527d961777ca8b43744ad16f4119">eventIsEmu</a> (const LeptonVector &amp;leptons)</td></tr>
@@ -215,7 +220,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhlfv_1_1Selector.html#a699c918e54be740c53c633d77797af93">m_outTupleFile</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">name of the file where the nutple will be written <br/></td></tr>
 </table>
-<hr/><h2>Member Function Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>TSelector implementing the HLFV event selection. </p>
+<p>This TSelector reads in the SusyNtuple events and selects the ones passing the selection criteria we used for the Higgs lepton flavor violation (HLFV) study. It can also write out our analysis ntuples. For an example of its usage, see util/run_Selector.cxx.</p>
+<p><a href="mailto:davide.gerbaudo@gmail.com">davide.gerbaudo@gmail.com</a> June 2014 </p>
+</div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a124fe581fd670b1764a9f7e000053ee3"></a><!-- doxytag: member="hlfv::Selector::assignNonStaticWeightComponents" ref="a124fe581fd670b1764a9f7e000053ee3" args="(const LeptonVector &amp;leptons, const JetVector &amp;jets, const hlfv::Systematic::Value sys, hlfv::WeightComponents &amp;weightcomponents)" -->
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +244,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const hlfv::Systematic::Value&#160;</td>
+          <td class="paramtype">const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a>&#160;</td>
           <td class="paramname"><em>sys</em>, </td>
         </tr>
         <tr>
@@ -316,7 +325,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const hlfv::Systematic::Value&#160;</td>
+          <td class="paramtype">const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a>&#160;</td>
           <td class="paramname"><em>sys</em>&#160;</td>
         </tr>
         <tr>
@@ -346,7 +355,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const hlfv::Systematic::Value&#160;</td>
+          <td class="paramtype">const <a class="el" href="structhlfv_1_1Systematic.html#ae09643bdcc777e700fa8ef050a1063dd">hlfv::Systematic::Value</a>&#160;</td>
           <td class="paramname"><em>sys</em>&#160;</td>
         </tr>
         <tr>
@@ -464,7 +473,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
