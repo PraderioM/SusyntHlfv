@@ -94,7 +94,7 @@ Bool_t Selector::Process(Long64_t entry)
                                          eventFlags.mllMin &&
                                          vars.hasFiredTrig &&
                                          vars.hasTrigMatch &&
-                                         eventIsEmu(l));
+                                         eventIsSameSign(l));
             if(is_event_to_be_saved){
                 if(usingEventList() && !m_useExistingList) m_eventList.addEvent(entry);
                 if(m_writeTuple) {

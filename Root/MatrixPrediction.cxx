@@ -77,7 +77,7 @@ Bool_t MatrixPrediction::Process(Long64_t entry)
                                          eventFlags.mllMin &&
                                          vars.hasFiredTrig &&
                                          vars.hasTrigMatch &&
-                                         eventIsEmu(l));
+                                         eventIsSameSign(l));
             if(is_event_to_be_saved){
                 uint nVtx = nt.evt()->nVtx;
                 bool isMC = nt.evt()->isMC;
