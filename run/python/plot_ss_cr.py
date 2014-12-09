@@ -1,12 +1,13 @@
 #!/bin/env python
 
-# make basic plots for the emu selection
+# make basic plots for the same sign control regions used in the razor study
 #
 # davide.gerbaudo@gmail.com
-# Sep 2014
+# Dec 2014
 
 import collections
 import datetime
+import kin
 import math
 import optparse
 import os
@@ -275,9 +276,12 @@ def count_and_fill(chain, sample='', syst='', verbose=False):
         l0_is_t, l1_is_t = l0.isTight, l1.isTight
         is_emu = int(l0_is_el and l1_is_mu)
         is_mue = int(l0_is_mu and l1_is_el)
+        is_ee = int(l0_is_el and l1_is_el)
+        is_mumu = int(l0_is_mu and l1_is_mu)
         is_same_sign = int((l0.charge * l1.charge)>0)
         is_opp_sign  = not is_same_sign
         l0_pt, l1_pt = l0.p4.Pt(), l1.p4.Pt()
+        dphi_ll_vBetaT, mdeltar = kin.computeRazor(l0.p4, l1.p4, met.p4)
         dphi_l0_met = abs(l0.p4.DeltaPhi(met.p4))
         dphi_l1_met = abs(l1.p4.DeltaPhi(met.p4))
         dphi_l0_l1 = abs(l0.p4.DeltaPhi(l1.p4))
@@ -323,28 +327,16 @@ def printCounters(counters):
 #___________________________________________________________
 def selection_formulas(sel=None):
     pt_req = 'l0_pt>45.0 and l1_pt>12.0'
-    common_req = (pt_req+' and '+
-                  'dphi_l1_met<0.7 and dphi_l0_l1>2.3 and '+
-                  'dpt_l0_l1>7.0 and dphi_l0_met>2.5')
     formulas = {
-        'pre_emu' : 'is_emu and '+pt_req,
-        'pre_mue' : 'is_mue and '+pt_req,
-        'pre_emu_mue' : '(is_emu or is_mue) and '+pt_req,
-        'sr_emu' : 'l0_is_el and l1_is_mu and '+common_req,
-        'sr_mue' : 'l0_is_mu and l1_is_el and '+common_req,
-        'sr_emu_mue' : '(is_emu or is_mue) and '+common_req,
+        'pre_ee' : 'is_ee',
+        'pre_em' : 'is_emu or is_mue ',
+        'pre_mm' : 'is_mumu',
+        'mdr20_ee' : 'is_ee and mdeltar>20.0',
+        'mdr20_em' : '(is_emu or is_mue) and mdeltar>20.0',
+        'mdr20_mm' : 'is_mumu and mdeltar>20.0'
         }
-    formulas = dict([(k+'_'+ssos, v+' and '+ssos_expr)
-                     for k, v in formulas.iteritems()
-                     for ssos, ssos_expr in [('ss', 'is_same_sign'), ('os', 'is_opp_sign')]])
-    # symmetric selection
-    pt_sym_req = 'l0_pt>20.0 and l1_pt>20.0'
-    for lf, lf_expr in [('emu', 'is_emu'), ('mue', 'is_mue'), ('emu_mue', '(is_emu or is_mue)')]:
-        for ssos, ssos_expr in [('ss', 'is_same_sign'), ('os', 'is_opp_sign')]:
-            formulas['sym_'+lf+'_'+ssos] = pt_sym_req+' and '+lf_expr+' and '+ssos_expr
-    # validation region used by Matt in the 2L paper, see sec6.4 ATL-COM-PHYS-2012-1808
-    formulas_vrss_btag = 'num_b_jets==1 and et_miss_rel>50.0 and abs(m_ll-91.2)>10.0 if is_ee else True) and ((m_ll<90.0 or m_ll>120) if is_mumu else True)'
-    # formulas['vrss_btag'] = formulas_vrss_btag
+    formulas = dict((r, pt_req+' and '+sel)
+                    for r, sel in formulas.iteritems())
     return formulas[sel] if sel else formulas
 #___________________________________________________________
 def variablesToPlot() :
