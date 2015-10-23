@@ -42,7 +42,7 @@ def main():
 
     fake.setSyst() # reset to nominal (state is undetermined after 'explore')
     c = r.TCanvas('c','')
-    variables = ['mcollcoarse', 'pt1']
+    variables = ['mcollcoarse']
 
     for jetnojet in regions_to_plot().keys():
         for var in variables:
@@ -83,7 +83,7 @@ def main():
             h_ratio = h_emu.Clone(h_mue.GetName().replace('emu', 'emu_over_mue'))
             h_ratio.Divide(h_mue)
             plot_emu_mue_with_ratio(canvas=c, h_mue=h_mue, h_emu=h_emu, h_ratio=h_ratio,
-                                    filename=outputdir+'/'+var+'_emu_over_mue_with_sys_err')
+                                    filename=outputdir+'/'+var+'_'+jetnojet+'_emu_over_mue_with_sys_err')
     return
 
 def plot_emu_mue_with_ratio(canvas=None, h_mue=None, h_emu=None, h_ratio=None,
