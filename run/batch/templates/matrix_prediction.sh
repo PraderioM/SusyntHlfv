@@ -25,11 +25,29 @@ run_MatrixPrediction \
  -i ${SLURM_SUBMIT_DIR}/%(filelist)s \
  -o %(local_outfilename)s \
  -s %(samplename)s \
- --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Dec_18_mu_el_fake_from_data.root \
+ --etapt \
  --systematics \
+ --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Jun_17.root \
  %(opt)s
 
- # --etapt \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Jun_17.root \ with sys frac breakdown
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_May_14.root \ with sys
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_May_10.root \ anatype 2lwh
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_May_04.root \ # tight iso (py onthe fly)
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Mar_18_syst.root \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Apr_14.root \ # also real eff from hlfv area
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Apr_06.root \ # fr from hlfv area
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Mar_18_hack_mu.root \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Mar_18_tag40.root \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Mar_18.root \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Mar_12.root \ # tag is tight
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Mar_02.root \ # fine eta, 2d
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Feb_23.root \ # fine pt
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Feb_18.root \ # fixed tight
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Feb_02_loose_iso.root \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Dec_18_scale_low_pt_mu_and_el_fake.root \
+ # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Dec_18_mu_el_fake_from_data.root \
+
 
  # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FakeMatrix_Dec_10.root \
  # --matrix-file ${ROOTCOREDIR}/data/DileptonMatrixMethod/FinalFakeHist_May_20.root \
