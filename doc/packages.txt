@@ -1,0 +1,12 @@
+Info about  /gdata/atlas/gerbaudo/hlfv/take0
+SusyntHlfv               : Jan_14-ntuple-138-ga3c80e4 
+SusyNtuple               : SusyNtuple-00-01-13 
+CalibrationDataInterface : /gdata/atlas/gerbaudo/hlfv/take0/CalibrationDataInterface ?
+Mt2                      : Mt2-00-00-01 
+DGTriggerReweight        : DGTriggerReweight-00-00-29 
+ReweightUtils            : ReweightUtils-00-02-13 
+JVFUncertaintyTool       : JVFUncertaintyTool-00-00-04 
+SUSYTools                : /gdata/atlas/gerbaudo/hlfv/take0/SUSYTools ?
+DileptonMatrixMethod     : v0.2-1-g1c46abf 
+RootCore                 : RootCore-00-02-99 
+ChargeFlip               : 220913 
