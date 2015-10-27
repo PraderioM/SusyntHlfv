@@ -205,10 +205,10 @@ def buildAsymmRatioGraph(num_data, den_reference, name='') :
     common_x = sorted(list(set(valid_x_num).intersection(nonzero_x_den)))
     points_num = [i for i,x in zip(valid_p_num, valid_x_num) if x in common_x]
     points_den = [i for i,x in zip(nonzero_p_den, nonzero_x_den) if x in common_x]
-    assert len(points_num)==len(points_den),("num and den: unmatched number of points: num[{}]!=den[{}], {}{}"
+    assert len(points_num)==len(points_den),("num and den: unmatched number of points: num[{0}]!=den[{1}], {2}{2}"
                                              .format(len(points_num), len(points_den), num.GetName(), den.GetName()))
     gr = num.Clone()
-    gr.SetName("{}_over_{}".format(num.GetName(), den.GetName()))
+    gr.SetName("{0}_over_{1}".format(num.GetName(), den.GetName()))
     [gr.RemovePoint(i) for i in range(gr.GetN())] # keep the formatting, then add only the points we want
     xs     = np.array([num.GetX()[i] for i in points_num])
     ys     = np.array([num.GetY()[i] for i in points_num])
