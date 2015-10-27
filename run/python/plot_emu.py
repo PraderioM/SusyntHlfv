@@ -369,7 +369,7 @@ def submit_batch_fill_job_per_group_per_selection(group=None, selection='', opts
                       .replace('%(jobname)s', group_name+'_'+selection)
                       .replace('%(queue)s', opts.queue))
     script_file.close()
-    cmd = "sbatch %s"%script_name
+    cmd = "qsub %s"%script_name
     if verbose : print cmd
     out = getCommandOutput(cmd)
     if verbose : print out['stdout']
