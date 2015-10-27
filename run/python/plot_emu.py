@@ -94,7 +94,7 @@ def main() :
                       " Give a comma-sep list or say 'weight', 'object', or 'fake'")
     parser.add_option('--log-dir', help='directory where the batch logs will be (default log/...)')
     parser.add_option('-e', '--exclude', help="skip some systematics, example 'EL_FR_.*'")
-    parser.add_option('-q', '--queue', default='atlas_all', help="batch queue, default atlas_all")
+    parser.add_option('-q', '--queue', default='atlas', help="batch queue, default atlas")
     parser.add_option('-T', '--tight-def', help='on-the-fly tight def, one of defs in fakeUtils.py: fakeu.lepIsTight_std, etc.')
     parser.add_option('--regions', default=None, help='comma-separated list of regions to consider')
     parser.add_option('--include-regions', default='.*', help='regexp to filter regions')
