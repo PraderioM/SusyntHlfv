@@ -386,7 +386,7 @@ def count_and_fill(chain, sample='', syst='', verbose=False, debug=False, blinde
     is_mc = systUtils.Group(sample).isMc
     is_data = systUtils.Group(sample).isData
     is_qflip_sample = dataset.DatasetGroup(sample).is_qflip
-    assert bool(cached_cut) != bool(noncached_cuts),"must choose either cached selection or non-cached selections: {}, {}".format(cached_cut, noncached_cuts)
+    assert bool(cached_cut) != bool(noncached_cuts),"must choose either cached selection or non-cached selections: {0}, {1}".format(cached_cut, noncached_cuts)
     cuts = [cached_cut] if cached_cut else noncached_cuts
     if noncached_cuts:
         chain.preselect(None)
@@ -678,7 +678,7 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
         label = ('H#rightarrow#tau#mu' if 'signaltaumu' in histoSignal.GetName() else
                  'H#rightarrow#taue'   if 'signaltaue' in histoSignal.GetName() else
                  'signal')
-        label = "{}, BR=1%, {:.2f}".format(label, integralWou(histoSignal))
+        label = "{0}, BR=1%, {1:.2f}".format(label, integralWou(histoSignal))
         leg.AddEntry(histoSignal, label, 'l')
     if statErrBand and drawStatErr :
         statErrBand.SetFillStyle(3006)
@@ -694,11 +694,11 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
         totErrBand.SetFillStyle(3005)
         leg.AddEntry(totErrBand, 'stat+syst', 'f')
         if printYieldSummary:
-            print ("{}:".format(topLabel if topLabel else dataGraph.GetName())+
-                   " expected {:.2f}^{{+{:.2f}}}_{{{:.2f}}}".format(totErrBand.GetY()[0],
-                                                                    totErrBand.GetErrorYhigh(0),
-                                                                    totErrBand.GetErrorYlow(0))+
-                   " obs {:.2f}".format(dataGraph.GetY()[0]))
+            print ("{0}:".format(topLabel if topLabel else dataGraph.GetName())+
+                   " expected {0:.2f}^{{+{1:.2f}}}_{{{2:.2f}}}".format(totErrBand.GetY()[0],
+                                                                       totErrBand.GetErrorYhigh(0),
+                                                                       totErrBand.GetErrorYlow(0))+
+                   " obs {0:.2f}".format(dataGraph.GetY()[0]))
     leg.Draw('same')
     topPad.Update()
     tex = r.TLatex()
