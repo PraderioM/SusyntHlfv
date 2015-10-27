@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -j {oe}
+#PBS -j oe
 #PBS -m n
 #PBS -q %(queue)s
 #PBS -N %(jobname)s
