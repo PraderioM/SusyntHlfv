@@ -57,7 +57,7 @@ def parse_options():
     parser.add_option('-i', '--input', default='samples/', help='input directory or file (default: ./samples/)')
     parser.add_option("-o", "--do-not-overwrite", action="store_true", default=False, help="do not overwrite existing batch scripts")
     parser.add_option("-O", "--other-opt", help="other options that will be passed on to the executable; double quotes if necessary")
-    parser.add_option('-q', '--queue', default='atlas_all', help="batch queue, default atlas_all")
+    parser.add_option('-q', '--queue', default='N', help="batch queue, default 'N'")
     parser.add_option('-s', '--include-regexp', help="select only matching samples (default '.*')")
     parser.add_option('-e', '--exclude-regexp', help="exclude matching samples")
     parser.add_option("-S", "--submit", action='store_true', default=False, help="submit jobs (default dry run)")
