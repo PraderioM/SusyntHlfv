@@ -36,7 +36,7 @@ def main():
         if not script:
             if verbose : print "skipping (do-not-overwrite) {0}".format(dset.name)
             continue
-        cmd = "sbatch %s" % script
+        cmd = "qsub %s" % script
         if verbose : print cmd
         if submit :
             out = utils.getCommandOutput(cmd)
