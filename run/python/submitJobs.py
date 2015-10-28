@@ -150,7 +150,7 @@ def get_batch_script(dset, options):
         line = line.replace('%(jobname)s', jobname)
         line = line.replace('%(queue)s', queue)
         line = line.replace('%(logfile)s', out_logfile)
-        line = line.replace('%(local_outfilename)s', local_out_rootfile)
+        line = line.replace('%(local_outfilename)s', out_rootfile)
         line = line.replace('%(outfilename)s', out_rootfile)
         line = line.replace('%(opt)s', exe_options)
         line = line.replace('%(samplename)s', dsname)
