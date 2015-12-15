@@ -275,6 +275,7 @@ def runPlot(opts) :
         if verbose : print '-- plotting ',sel
         for var in variables :
             if verbose : print '---- plotting ',var
+            print_summary_yield = var is 'onebin'
             for g in plot_groups :
                 g.setSystNominal()
                 g.setCurrentSelection(sel)
@@ -290,8 +291,10 @@ def runPlot(opts) :
             statErrBand = buildStat(nominalHistoTotBkg)
             systErrBand = buildSyst(fake=fake, simBkgs=simBkgs, variable=var, selection=sel,
                                     fakeVariations=fakeSystematics, mcVariations=mcSystematics,
-                                    verbose=verbose)
-            print_summary_yield = var is 'onebin'
+                                    verbose=verbose, printYield=print_summary_yield)
+            # if print_summary_yield:
+            #     print_stat_syst_yield(fake=fake, variable=var, selection=sel, fakeVariations=fakeSystematics)
+
             plotHistos(histoData=nominalHistoData, histoSignal=nominalHistoSign,
                        histoTotBkg=nominalHistoTotBkg, histosBkg=nominalHistosBkg,
                        statErrBand=statErrBand, systErrBand=systErrBand,
@@ -694,10 +697,20 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
         totErrBand.SetFillStyle(3005)
         leg.AddEntry(totErrBand, 'stat+syst', 'f')
         if printYieldSummary:
+            print_total_error = False
             print ("{}:".format(topLabel if topLabel else dataGraph.GetName())+
-                   " expected {:.2f}^{{+{:.2f}}}_{{{:.2f}}}".format(totErrBand.GetY()[0],
+
+                   (" expected {:.2f}^{{+{:.2f}}}_{{{:.2f}}}".format(totErrBand.GetY()[0],
                                                                     totErrBand.GetErrorYhigh(0),
-                                                                    totErrBand.GetErrorYlow(0))+
+                                                                    totErrBand.GetErrorYlow(0))
+                    if print_total_error else
+                    " expected {:.2f}^{{+{:.2f}}}_{{{:.2f}}} (stat) ^{{+{:.2f}}}_{{{:.2f}}} (syst)"
+                    .format(totErrBand.GetY()[0],
+                            statErrBand.GetErrorYhigh(0) if statErrBand else 0.0,
+                            statErrBand.GetErrorYlow(0) if statErrBand else 0.0,
+                            systErrBand.GetErrorYhigh(0) if systErrBand else 0.0,
+                            systErrBand.GetErrorYlow(0) if systErrBand else 0.0)
+                    )+
                    " obs {:.2f}".format(dataGraph.GetY()[0]))
     leg.Draw('same')
     topPad.Update()
