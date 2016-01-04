@@ -268,8 +268,8 @@ class BaseSampleGroup(object) :
     def isMcBkg(self) : return self.isMc and not self.isSignal
     def isNeededForSys(self, sys) :
         return (sys=='NOM'
-                or (self.isMc and sys in mcWeightVariations())
-                or (self.isMc and sys in mcObjectVariations())
+                or (self.isSignal and sys in mcWeightVariations())
+                or (self.isSignal and sys in mcObjectVariations())
                 or (self.isFake and sys in fakeSystVariations()))
     def setSystNominal(self) : return self.setSyst()
     def setSyst(self, sys='NOM') :
@@ -490,15 +490,21 @@ def buildStatisticalErrorBand(histoTotBkg= None) :
 def buildSystematicErrorBand(fake=None, simBkgs=[], variable='', selection='',
                              fakeVariations = fakeSystVariations(),
                              mcVariations = mcObjectVariations()+mcWeightVariations(),
-                             verbose=False) :
+                             verbose=False, printYield=False) :
     "build the syst error band accounting for fake, mc-object, and mc-weight systematics"
     if verbose : print "buildSystematicErrorBand(%s, %s)"%(variable, selection)
     for g in [fake] + simBkgs : g.setSystNominal()
     nominalFake   = fake.getHistogram(variable, selection)
     nominalOthers = dict([(g.name, g.getHistogram(variable=variable, selection=selection)) for g in simBkgs])
-
-    fakeSysErrorBand  = buildFakeSystematicErrorBand(fake, nominalOthers, variable, selection, fakeVariations, verbose)
-    mcSysErrorBand    = buildMcSystematicErrorBand  (nominalFake, simBkgs, variable, selection, mcVariations, verbose)
+    availableMcBkgSystematics = [s for s in mcVariations if all(s in g.systematics for g in simBkgs)]
+    missingMcBkgSystematics = [s for s in mcVariations if s not in availableMcBkgSystematics]
+    if missingMcBkgSystematics:
+        print "Warning: requested %d mc bkg systematics, found %s\nmissing: %s"%(len(mcVariations),
+                                                                                 len(availableMcBkgSystematics),
+                                                                                 str(missingMcBkgSystematics))
+    fakeSysErrorBand  = buildFakeSystematicErrorBand(fake, nominalOthers, variable, selection, fakeVariations,
+                                                     verbose, printYield)
+    mcSysErrorBand    = buildMcSystematicErrorBand  (nominalFake, simBkgs, variable, selection, availableMcBkgSystematics, verbose)
 
     totErrorBand = None
     if fakeSysErrorBand and mcSysErrorBand : totErrorBand = addErrorBandsInQuadrature(fakeSysErrorBand, mcSysErrorBand)
@@ -507,17 +513,32 @@ def buildSystematicErrorBand(fake=None, simBkgs=[], variable='', selection='',
     return totErrorBand
 #___________________________________________________________
 def buildFakeSystematicErrorBand(fake=None, nominalHistosSimBkg={},
-                                 variable='', selection='', variations=[], verbose=False) :
+                                 variable='', selection='', variations=[], verbose=False, printYield=False) :
     if verbose : print "buildFakeSystematicErrorBand(%s, %s), %s"%(variable, selection, str(variations))
     fake.setSystNominal()
-    nominalTotBkg = buildTotBackgroundHisto(fake.getHistogram(variable, selection), nominalHistosSimBkg)
+    nominalHistoFake = fake.getHistogram(variable, selection)
+    nominalTotBkg = buildTotBackgroundHisto(nominalHistoFake, nominalHistosSimBkg)
     variedTotBkgs = dict()
     for sys in variations :
         if verbose : print "buildFakeSystematicErrorBand(%s)"%sys
         variedTotBkgs[sys] = buildTotBackgroundHisto(fake.setSyst(sys).getHistogram(variable=variable, selection=selection),
                                                      nominalHistosSimBkg)
     err2 = computeSysErr2(nominal_histo=nominalTotBkg, vars_histos=variedTotBkgs)
-    return buildErrBandGraph(nominalTotBkg, err2)
+    fakeSysErrorBand = buildErrBandGraph(nominalTotBkg, err2)
+    if printYield:
+        bin = 1
+        point = 0
+        def bc(h) : return [h.GetBinContent(b) for b in range(1, 1+h.GetNbinsX())]
+        print "%s : %s"%(nominalHistoFake.GetName(), str(bc(nominalHistoFake)))
+        print ("{:s} expected {:.2f}"
+               "^{{+{:.2f}}}_{{{:.2f}}} (stat) "
+               "^{{+{:.2f}}}_{{{:.2f}}} (syst)").format(nominalHistoFake.GetName(),
+                                                        nominalHistoFake.GetBinContent(bin),
+                                                        nominalHistoFake.GetBinErrorUp(bin) if nominalHistoFake else 0.0,
+                                                        nominalHistoFake.GetBinErrorLow(bin) if nominalHistoFake else 0.0,
+                                                        fakeSysErrorBand.GetErrorYhigh(point) if fakeSysErrorBand else 0.0,
+                                                        fakeSysErrorBand.GetErrorYlow(point) if fakeSysErrorBand else 0.0)
+    return fakeSysErrorBand
 #___________________________________________________________
 def buildMcSystematicErrorBand(fakeNominalHisto=None, simulatedBackgrounds=[],
                                variable='', selection='', variations=[], verbose=False) :
