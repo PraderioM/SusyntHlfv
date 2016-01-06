@@ -42,8 +42,12 @@ def main():
         files = [f for f in all_input_files if f.is_component() and f.is_right_decay(region)]
         for f in files:
             f.histoname_prefix = 'h_mcoll_vs_pt1'
-            f.ptmin = 30.0 # None # 12-20, 20-30, 30-1000
-            f.ptmax = 1000.0 # None
+            # uncomment ptmin,ptmax below as needed.
+            # The actual bin edges are 12-20, 20-30, 30-inf; use the *.9 hack to avoid double counting from TAxis::FindFixBin
+            f.ptmin, f.ptmax = None, None
+            f.ptmin, f.ptmax = 12.0, 19.9
+            # f.ptmin, f.ptmax = 20.0, 29.9
+            # f.ptmin, f.ptmax = 30.0, 1000.0
 
         samples = list(set(f.sample for f in files))
         if debug:
