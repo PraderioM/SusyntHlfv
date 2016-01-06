@@ -40,10 +40,15 @@ def main():
 
     for region in SignalFile.regions_emu() + SignalFile.regions_mue():
         files = [f for f in all_input_files if f.is_component() and f.is_right_decay(region)]
-        samples = list(set(f.sample for f in files))
+        for f in files:
+            f.histoname_prefix = 'h_mcoll_vs_pt1'
+            f.ptmin = 30.0 # None # 12-20, 20-30, 30-1000
+            f.ptmax = 1000.0 # None
 
-        print linebreak
-        print "%s : using %s" % (region, ', '.join(samples))
+        samples = list(set(f.sample for f in files))
+        if debug:
+            print linebreak
+            print "%s : using %s" % (region, ', '.join(samples))
 
         nom_files = [f for f in files if f.variation=='NOM']
         nom_samples = [f.sample for f in nom_files]
@@ -104,11 +109,12 @@ def main():
         err_syst = compute_total_syst(nom_yield,
                                       two_sided_yields,
                                       one_sided_yields,
-                                      theo_syst_yields)# todo you are here
+                                      theo_syst_yields)
         err_stat = error_nom
         print "%s : %.2f +/- %.2f +/- %.2f" % (region, yield_nom, err_stat, err_syst)
 
-    print linebreak
+    if debug:
+        print linebreak
 
 def sumquad(ll):
     return sum([l*l for l in ll])
