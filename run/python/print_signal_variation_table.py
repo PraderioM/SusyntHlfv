@@ -76,6 +76,9 @@ class File(object):
         match = File.parse_attributes(filename)
         for a in ['sample', 'variation', 'region']:
             setattr(self, a, match[a])
+        self.histoname_prefix = 'h_onebin'
+        self.ptmin = None
+        self.ptmax = None
         self.yields = dict()
         self.errors = dict()
 
@@ -97,23 +100,49 @@ class File(object):
         return {'sample':match.group('sample'),
                 'variation':match.group('variation'),
                 'region':match.group('region')}
+    @property
+    def histoname(self):
+        return self.histoname_prefix+'_'+self.sample+'_'+self.variation+'_'+self.region
 
-    def get_yield(self, histoname_prefix='h_onebin' ):
-        histoname = histoname_prefix+'_'+self.sample+'_'+self.variation+'_'+self.region
-        if histoname not in self.yields:
-             input_file = r.TFile.Open(self.filename)
-             histogram = input_file.Get(histoname)
-             integral, error = ru.integralAndError(histogram)
-             self.yields[histoname] = integral
-             self.errors[histoname] = error
-             input_file.Close()
-        return self.yields[histoname]
+    @property
+    def keycache(self):
+        ptbin_label = '' if self.ptmin is None and self.ptmax is None else "pt_%03d_%03d"%(self.ptmin, self.ptmax)
+        return self.histoname + ptbin_label
 
-    def get_error(self, histoname_prefix='h_onebin' ):
-        histoname = histoname_prefix+'_'+self.sample+'_'+self.variation+'_'+self.region
-        if histoname not in self.errors:
-            self.get_yield(histoname_prefix)
-        return self.errors[histoname]
+    def cache_values(self):
+        input_file = r.TFile.Open(self.filename)
+        histogram = input_file.Get(self.histoname)
+        integral, error = None, None
+        ptmin, ptmax = self.ptmin, self.ptmax
+        one_dim = histogram.Class().GetName().startswith('TH1')
+        if one_dim:
+            integral, error = ru.integralAndError(histogram)
+        else:
+            pt_axis = histogram.GetXaxis()
+            if not any(s in pt_axis.GetTitle() for s in ['pt', 'p_T', 'p_{T']):
+                raise RuntimeError("expecting pt axis, but got '%s' from %s"%(pt_axis.GetTitle(), histogram.GetName()))
+            first_pt_bin = pt_axis.FindFixBin(ptmin) if ptmin else 0
+            last_pt_bin = pt_axis.FindFixBin(ptmax) if ptmax else -1
+            first_m_bin = 0
+            last_m_bin = -1
+            error = r.Double(0.0)
+            integral = histogram.IntegralAndError(first_pt_bin, last_pt_bin, first_m_bin, last_m_bin, error)
+            error = float(error)
+        self.yields[self.keycache] = integral
+        self.errors[self.keycache] = error
+        input_file.Close()
+
+    def get_yield(self):
+        key = self.keycache
+        if key not in self.yields:
+            self.cache_values()
+        return self.yields[key]
+
+    def get_error(self):
+        key = self.keycache
+        if key not in self.yields:
+            self.cache_values()
+        return self.errors[key]
 
 def filter_two_sided_variations(variations=[]):
     two_sided = []
