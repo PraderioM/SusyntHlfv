@@ -37,7 +37,7 @@ def main():
         if not nom_yield:
             print "%s has 0.0 nominal yield"%(sample)
             continue
-        
+
         print "Nominal yield %s  %.2f"%(nom_name, nom_yield)
         print linebreak
         variations = [f.variation for f in input_files.values()]
@@ -46,13 +46,13 @@ def main():
         two_sided_variations = filter_two_sided_variations(variations)
         two_sided_variations_up = [v for v in variations if 'UP' in v]
         one_sided_variations = filter_one_sided_variations(variations, two_sided_variations)
-        
+
         print "Two-sided variations [%]"+'\n'+linebreak
         for v in sorted(two_sided_variations_up):
             vname = v.replace('_UP', '')
             vup = input_files[v]
             vdo = input_files[v.replace('_UP', '_DOWN')]
-            print ' '.join(cellwidth%v for v in [vname,                            
+            print ' '.join(cellwidth%v for v in [vname,
                                                  "%.2f"%(100.*(vup.get_yield()-nom_yield)/nom_yield),
                                                  "%.2f"%(100.*(vdo.get_yield()-nom_yield)/nom_yield)])
         print linebreak
@@ -60,10 +60,10 @@ def main():
         print linebreak
         for vname in sorted(one_sided_variations):
             vf = input_files[vname]
-            print ' '.join(cellwidth%v for v in [vname,                            
+            print ' '.join(cellwidth%v for v in [vname,
                                                  "%.2f"%(100.*(vf.get_yield()-nom_yield)/nom_yield)])
             # print "%s :  %.2f "%(vname,
-            #                      100.*(variation_file.get_yield()-nom_yield)/nom_yield)            
+            #                      100.*(variation_file.get_yield()-nom_yield)/nom_yield)
     print linebreak
 
 class File(object):
@@ -157,7 +157,7 @@ def filter_two_sided_variations(variations=[]):
 def filter_one_sided_variations(variations=[], two_sided=[]):
     two_sided = two_sided if two_sided else two_sided_variations(variations)
     return [v for v in variations if v not in two_sided and v!='NOM']
-    
+
 def test_regex_parsing():
     values = ['signaltaumu_EESZ_UP_sr_emu_os.root',
               'signaltaumu_EESZ_UP_sr_emu_os_jets.root',
@@ -169,6 +169,6 @@ def test_regex_parsing():
             for g in ['sample', 'variation', 'region']:
                 print g,': ',match.group(g)
 
-        
+
 if __name__=='__main__':
     main()
