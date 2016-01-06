@@ -18,9 +18,8 @@ import sys
 from collections import OrderedDict
 
 
-from rootUtils import importRoot
-r = importRoot()
-
+import rootUtils as ru
+r = ru.importRoot()
 
 def main():
     ""
@@ -77,6 +76,8 @@ class File(object):
         match = File.parse_attributes(filename)
         for a in ['sample', 'variation', 'region']:
             setattr(self, a, match[a])
+        self.yields = dict()
+        self.errors = dict()
 
     @classmethod
     def parse_attributes(cls, filename=''):
@@ -99,9 +100,20 @@ class File(object):
 
     def get_yield(self, histoname_prefix='h_onebin' ):
         histoname = histoname_prefix+'_'+self.sample+'_'+self.variation+'_'+self.region
-        input_file = r.TFile.Open(self.filename)
-        histogram = input_file.Get(histoname)
-        return histogram.Integral()
+        if histoname not in self.yields:
+             input_file = r.TFile.Open(self.filename)
+             histogram = input_file.Get(histoname)
+             integral, error = ru.integralAndError(histogram)
+             self.yields[histoname] = integral
+             self.errors[histoname] = error
+             input_file.Close()
+        return self.yields[histoname]
+
+    def get_error(self, histoname_prefix='h_onebin' ):
+        histoname = histoname_prefix+'_'+self.sample+'_'+self.variation+'_'+self.region
+        if histoname not in self.errors:
+            self.get_yield(histoname_prefix)
+        return self.errors[histoname]
 
 def filter_two_sided_variations(variations=[]):
     two_sided = []
