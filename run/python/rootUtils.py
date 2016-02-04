@@ -71,12 +71,12 @@ def topLeftLegend(pad,  legWidth, legHeight, shift=0.0) :
     leg.SetFillStyle(0)
     pad._leg = leg
     return leg
-def topRightLegend(pad,  legWidth, legHeight, shift=0.0) :
+def topRightLegend(pad,  legWidth, legHeight, shiftX=0.0, shiftY=0.0) :
     rMarg, lMarg, tMarg = pad.GetRightMargin(), pad.GetLeftMargin(), pad.GetTopMargin()
-    leg = r.TLegend(1.0 - rMarg - legWidth + shift,
-                    1.0 - tMarg - legHeight + shift,
-                    1.0 - rMarg + shift,
-                    1.0 - tMarg + shift)
+    leg = r.TLegend(1.0 - rMarg - legWidth + shiftX,
+                    1.0 - tMarg - legHeight + shiftY,
+                    1.0 - rMarg + shiftX,
+                    1.0 - tMarg + shiftY)
     leg.SetBorderSize(1)
     leg.SetFillColor(0)
     leg.SetFillStyle(0)

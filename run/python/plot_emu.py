@@ -110,6 +110,7 @@ def main() :
     parser.add_option('--require-tight-tight', action='store_true', help='fill histos only when both leps are tight')
     parser.add_option('--quick-test', action='store_true', help='run a quick test and fill only 1% of the events')
     parser.add_option('--disable-cache', action='store_true', help='disable the entry cache')
+    parser.add_option('--format-aux', action='store_true', help='format plots for paper aux material')
 
     (opts, args) = parser.parse_args()
     if opts.list_all_systematics :
@@ -300,7 +301,7 @@ def runPlot(opts) :
                        statErrBand=statErrBand, systErrBand=systErrBand,
                        stack_order=names_stacked_groups,
                        topLabel=sel,
-                       canvasName=(sel+'_'+var), outdir=outputDir, verbose=verbose,
+                       canvasName=(sel+'_'+var), outdir=outputDir, options=opts,
                        printYieldSummary=print_summary_yield)
     for group in plot_groups :
         group.printVariationsSummary()
@@ -617,10 +618,12 @@ def regions_to_plot(include='.*', exclude=None, regions=''):
     return selected_regions
 
 def variables_to_plot():
-    return ['onebin', 'njets', 'pt0', 'pt1', 'd_pt0_pt1', 'eta0', 'eta1', 'phi0', 'phi1', 'mcoll', 'mcollcoarse',
-            'mll', 'ptll', 'met', 'dphil0met', 'dphil1met',
-            'drl0csj', 'drl1csj', 'deta_jj', 'm_jj',
-            'nsj',
+    return ['onebin',
+            # 'njets', 'pt0', 'pt1', 'd_pt0_pt1', 'eta0', 'eta1', 'phi0', 'phi1', 'mcoll',
+            'mcollcoarse',
+            # 'mll', 'ptll', 'met', 'dphil0met', 'dphil1met',
+            # 'drl0csj', 'drl1csj', 'deta_jj', 'm_jj',
+            # 'nsj',
             ]
 def variables_to_fill():
     "do not plot 2d variables, but still fill the corresponding histograms"
@@ -629,12 +632,14 @@ def variables_to_fill():
 
 def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
                statErrBand=None, systErrBand=None, # these are TGraphAsymmErrors
-               canvasName='canvas', outdir='./', verbose=False,
+               canvasName='canvas', outdir='./', options=None,
                stack_order=[],
                topLabel='',
                drawStatErr=False, drawSystErr=False,
                drawYieldAndError=False, printYieldSummary=False) :
     "Note: blinding can be required for only a subrange of the histo, so it is taken care of when filling"
+    verbose = options.verbose
+    formatAuxMaterial = options.format_aux
     setAtlasStyle()
     padMaster = histoData
     if verbose : print "plotting ",padMaster.GetName(),' (',padMaster.GetEntries(),' entries)'
@@ -645,14 +650,22 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
     # draw top
     topPad.cd()
     topPad._hists = [padMaster]
+    if formatAuxMaterial:
+        for ax in [padMaster.GetXaxis(), padMaster.GetYaxis()]:
+            ax.SetTitle(prettify(ax.GetTitle()))
     padMaster.Draw('axis')
     topPad.Update() # necessary to fool root's dumb object ownership of the stack
     stack = r.THStack('stack_'+padMaster.GetName(), '')
     r.SetOwnership(stack, False)
     topPad._hists.append(stack)
-    leg = topRightLegend(can, 0.225, 0.325)
+    leg = topRightLegend(can,
+                         0.300 if formatAuxMaterial else 0.225,
+                         0.425 if formatAuxMaterial else 0.325,
+                         shiftX=-0.1 if formatAuxMaterial else 0.0,
+                         shiftY=-0.1 if formatAuxMaterial else 0.0)
     topPad._leg = leg
     leg.SetBorderSize(0)
+    leg.SetTextFont(padMaster.GetTitleFont())
     leg._reversedEntries = []
     def integralWou(h):
         "Integral with underflow and overflow"
@@ -663,9 +676,28 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
         histo.SetLineColor(r.kBlack)
         stack.Add(histo)
         topPad._hists.append(histo)
-        leg._reversedEntries.append((histo, "{0}: {1:.2f}".format(group, integralWou(histo)), 'F'))
-    leg._reversedEntries.append((dummyHisto(), "{0}, {1:.2f}".format('bkg', sum([integralWou(h) for h in stack.GetHists()])), 'l'))
-    leg._reversedEntries.append((histoData, "{0}, {1:.2f}".format('data', integralWou(histoData)), 'p'))
+        leg._reversedEntries.append((histo,
+                                     prettify(group) if formatAuxMaterial else
+                                     "{0}: {1:.2f}".format(group, integralWou(histo)), 'F'))
+    if not formatAuxMaterial:
+        leg._reversedEntries.append((dummyHisto(),
+                                     "{0}, {1:.2f}".format('bkg', sum([integralWou(h) for h in stack.GetHists()])), 'l'))
+    if statErrBand and drawStatErr :
+        statErrBand.SetFillStyle(3006)
+        leg._reversedEntries.append((statErrBand, 'stat', 'f'))
+    if systErrBand and drawSystErr :
+        systErrBand.SetFillStyle(3007)
+        leg._reversedEntries.append((systErrBand, 'syst', 'f'))
+    if histoSignal :
+        label = ('H#rightarrow#mu#tau' if 'signaltaumu' in histoSignal.GetName() else
+                 'H#rightarrowe#tau'   if 'signaltaue' in histoSignal.GetName() else
+                 'signal')
+        label = ("{}, BR=1%".format(label) if formatAuxMaterial else
+                 "{}, BR=1%, {:.2f}".format(label, integralWou(histoSignal)))
+        leg._reversedEntries.append((histoSignal, label, 'l'))
+    leg._reversedEntries.append((histoData,
+                                 'Data' if formatAuxMaterial else
+                                 "{0}, {1:.2f}".format('data', integralWou(histoData)), 'p'))
     for h, g, o in leg._reversedEntries[::-1] : leg.AddEntry(h, g, o) # stack goes b-t, legend goes t-b
     stack.Draw('hist same')
     histoData.SetMarkerStyle(r.kFullCircle)
@@ -678,11 +710,6 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
         histoSignal.SetLineColor(getGroupColor('signal'))
         histoSignal.SetLineWidth(2)
         histoSignal.Draw('histo same')
-        label = ('H#rightarrow#tau#mu' if 'signaltaumu' in histoSignal.GetName() else
-                 'H#rightarrow#taue'   if 'signaltaue' in histoSignal.GetName() else
-                 'signal')
-        label = "{}, BR=1%, {:.2f}".format(label, integralWou(histoSignal))
-        leg.AddEntry(histoSignal, label, 'l')
     if statErrBand and drawStatErr :
         statErrBand.SetFillStyle(3006)
         statErrBand.Draw('E2 same')
@@ -725,8 +752,10 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
     if drawYieldAndError :
         tex.DrawLatex(0.10, 0.95, label)
         topPad.SetTopMargin(2.0*topPad.GetTopMargin())
-    atlasLabel = drawAtlasLabel(can, xpos=0.125, align=13, scale=0.75)
-    if topLabel : topRightLabel(can, topLabel, ypos=1.0)
+    atlasLabel = drawAtlasLabel(can, align=13, scale=0.75,
+                                xpos=0.175 if formatAuxMaterial else 0.125,
+                                ypos=0.950 if formatAuxMaterial else None)
+    if topLabel and not formatAuxMaterial : topRightLabel(can, topLabel, ypos=1.0)
     yMin, yMax = getMinMax([histoData, dataGraph, histoTotBkg, histoSignal, totErrBand])
     padMaster.SetMinimum(0.0)
     padMaster.SetMaximum(1.1 * yMax)
@@ -759,7 +788,7 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
     textScaleUp = 0.75*1.0/botPad.GetHNDC()
     # if xaxis_title : xA.SetTitle(xaxis_title)
     yA.SetNdivisions(-104)
-    yA.SetTitle('Data/SM')
+    yA.SetTitle('Data/Bkg')
     yA.CenterTitle()
     yA.SetTitleOffset(yA.GetTitleOffset()/textScaleUp)
     xA.SetTitleSize(yA.GetTitleSize()) # was set to 0 for padmaster, restore it
@@ -842,6 +871,19 @@ def parse_group_option(options=None, groups=[]):
     if options.verbose:
         print "parse_group_option: selected ",list(g.name for g in groups)
     return groups
+
+def prettify(s):
+    "make some of the string prettier (for AuxPlot labels)"
+    pretty = {
+        'fake' : 'Non-prompt',
+        'm_{coll,l0,l1} [GeV]' : 'm_{coll} [GeV]',
+        'top' : 'Top',
+        'zjets' : 'Z+jets',
+        'higgs' : 'SM Higgs',
+        'diboson' : 'Other bkg.',
+        ' entries/bin' : 'Events / 10 GeV', # hack, works only for m_coll_coarse
+        }
+    return pretty[s] if s in pretty else s
 
 #___________________________________________________________
 
