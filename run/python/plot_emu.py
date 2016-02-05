@@ -660,7 +660,7 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
     topPad._hists.append(stack)
     leg = topRightLegend(can,
                          0.300 if formatAuxMaterial else 0.225,
-                         0.425 if formatAuxMaterial else 0.325,
+                         0.400 if formatAuxMaterial else 0.325,
                          shiftX=-0.1 if formatAuxMaterial else 0.0,
                          shiftY=-0.1 if formatAuxMaterial else 0.0)
     topPad._leg = leg
@@ -688,15 +688,8 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
     if systErrBand and drawSystErr :
         systErrBand.SetFillStyle(3007)
         leg._reversedEntries.append((systErrBand, 'syst', 'f'))
-    if histoSignal :
-        label = ('H#rightarrow#mu#tau' if 'signaltaumu' in histoSignal.GetName() else
-                 'H#rightarrowe#tau'   if 'signaltaue' in histoSignal.GetName() else
-                 'signal')
-        label = ("{}, BR=1%".format(label) if formatAuxMaterial else
-                 "{}, BR=1%, {:.2f}".format(label, integralWou(histoSignal)))
-        leg._reversedEntries.append((histoSignal, label, 'l'))
     leg._reversedEntries.append((histoData,
-                                 'Data' if formatAuxMaterial else
+                                 "Data {0}".format(prettify(topLabel)) if formatAuxMaterial else
                                  "{0}, {1:.2f}".format('data', integralWou(histoData)), 'p'))
     for h, g, o in leg._reversedEntries[::-1] : leg.AddEntry(h, g, o) # stack goes b-t, legend goes t-b
     stack.Draw('hist same')
@@ -739,6 +732,17 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
                             systErrBand.GetErrorYlow(0) if systErrBand else 0.0)
                     )+
                    " obs {:.2f}".format(dataGraph.GetY()[0]))
+    if histoSignal:
+        hname = histoSignal.GetName()
+        label = ('H#rightarrow#mu#tau' if 'signaltaumu' in hname else
+                 'H#rightarrowe#tau'   if 'signaltaue' in hname else
+                 'signal')
+        label = ("{}, BR=1%".format(label) if formatAuxMaterial else
+                 "{}, BR=1%, {:.2f}".format(label, integralWou(histoSignal)))
+        isRightSignal = (all(s in hname for s in ['signaltaumu', 'sr_mue']) or
+                         all(s in hname for s in ['signaltaue', 'sr_emu']))
+        if isRightSignal:
+            leg.AddEntry(histoSignal, label, 'l')
     leg.Draw('same')
     topPad.Update()
     tex = r.TLatex()
@@ -882,6 +886,10 @@ def prettify(s):
         'higgs' : 'SM Higgs',
         'diboson' : 'Other bkg.',
         ' entries/bin' : 'Events / 10 GeV', # hack, works only for m_coll_coarse
+        'sr_emu_os' : 'e#mu SR_{noJets}',
+        'sr_mue_os' : '#mue SR_{noJets}',
+        'sr_emu_os_jets' : 'e#mu SR_{jets}',
+        'sr_mue_os_jets' : '#mue SR_{jets}'
         }
     return pretty[s] if s in pretty else s
 
