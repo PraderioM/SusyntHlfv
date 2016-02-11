@@ -697,12 +697,15 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
     histoData.SetLineWidth(2)
     dataGraph = graphWithPoissonError(histoData)
     dataGraph.Draw('same p')
-    if histoSignal :
+    isRightSignal = False
+    if histoSignal:
         histoSignal.SetFillStyle(0)
         histoSignal.SetFillColor(0)
         histoSignal.SetLineColor(getGroupColor('signal'))
-        histoSignal.SetLineWidth(2)
-        histoSignal.Draw('histo same')
+        histoSignal.SetLineWidth(3)
+        isRightSignal = (all(s in histoSignal.GetName() for s in ['signaltaumu', 'sr_mue']) or
+                         all(s in histoSignal.GetName() for s in ['signaltaue', 'sr_emu']))
+        if isRightSignal: histoSignal.Draw('histo same')
     if statErrBand and drawStatErr :
         statErrBand.SetFillStyle(3006)
         statErrBand.Draw('E2 same')
@@ -732,17 +735,14 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
                             systErrBand.GetErrorYlow(0) if systErrBand else 0.0)
                     )+
                    " obs {:.2f}".format(dataGraph.GetY()[0]))
-    if histoSignal:
+    if histoSignal and isRightSignal:
         hname = histoSignal.GetName()
         label = ('H#rightarrow#mu#tau' if 'signaltaumu' in hname else
                  'H#rightarrowe#tau'   if 'signaltaue' in hname else
                  'signal')
         label = ("{}, BR=1%".format(label) if formatAuxMaterial else
                  "{}, BR=1%, {:.2f}".format(label, integralWou(histoSignal)))
-        isRightSignal = (all(s in hname for s in ['signaltaumu', 'sr_mue']) or
-                         all(s in hname for s in ['signaltaue', 'sr_emu']))
-        if isRightSignal:
-            leg.AddEntry(histoSignal, label, 'l')
+        leg.AddEntry(histoSignal, label, 'l')
     leg.Draw('same')
     topPad.Update()
     tex = r.TLatex()
