@@ -758,7 +758,8 @@ def plotHistos(histoData=None, histoSignal=None, histoTotBkg=None, histosBkg={},
         topPad.SetTopMargin(2.0*topPad.GetTopMargin())
     atlasLabel = drawAtlasLabel(can, align=13, scale=0.75,
                                 xpos=0.175 if formatAuxMaterial else 0.125,
-                                ypos=0.950 if formatAuxMaterial else None)
+                                ypos=0.945 if formatAuxMaterial else None,
+                                public=True)
     if topLabel and not formatAuxMaterial : topRightLabel(can, topLabel, ypos=1.0)
     yMin, yMax = getMinMax([histoData, dataGraph, histoTotBkg, histoSignal, totErrBand])
     padMaster.SetMinimum(0.0)

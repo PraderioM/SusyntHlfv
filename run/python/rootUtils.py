@@ -223,8 +223,10 @@ def topRightLabel(pad, label, xpos=None, ypos=None, align=33, scale=1.0) :
     pad._label = tex
     return tex
 
-def drawAtlasLabel(pad, xpos=None, ypos=None, align=33, scale=1.0) :
-    label = "#bf{#it{ATLAS}} Internal, #sqrt{s} = 8 TeV, 20.3 fb^{-1}"
+def drawAtlasLabel(pad, xpos=None, ypos=None, align=33, scale=1.0, preliminary=False, public=False) :
+    label = "#bf{#it{ATLAS}}%s #sqrt{s} = 8 TeV, 20.3 fb^{-1}" % (',' if public else
+                                                                  ' Preliminary,' if preliminary else
+                                                                  ' Internal,')
     return topRightLabel(pad, label, xpos, ypos, align, scale)
 
 def getBinning(h) :
